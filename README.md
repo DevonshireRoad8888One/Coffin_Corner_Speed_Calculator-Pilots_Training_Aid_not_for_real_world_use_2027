@@ -1150,3 +1150,31 @@ POST‑SUMMARY
 
 ### Core relationships
 
+POST‑SUMMARY
+1. The calculator is now the lesson, not an add‑on to it. Four tabs, and every tab is a teaching artefact: BAND (the margin, and the countdown that shows it closing), DIVE (the reconstruction that shows the published field lying), CASE (the timeline with evidence labels, the Columbia comparison, the storm calculator, the open questions), REF (the physics, the recovery doctrine, the evidence discipline).
+
+2. The ICE COUNTDOWN table is the centrepiece. You change the ice percentage and watch the margin cross zero at 13.8 %. That single table teaches more than an hour of theory — because the margin stops being a number and becomes a clock.
+
+3. Every correction from the last three turns is baked in and pinned by the self‑test: sound speed in knots with mph as a cross‑check; the tropopause handled (a = 497.9 kt constant above FL360, so the stall Mach rises from density alone); a·√σ in knots; q‑peak 850 psf (4.23×), not the 585 I briefly got wrong; impact ≈12:49:34 EST; the 0.9 kt policy window at FL35,250.
+
+4. The DIVE tab now exposes the field‑saturation lesson. It parses your timestamps, derives the true vertical rate, flags FIELD SATURATED, and shows the percentage understatement: B→C 38,200 fpm and C→D 49,800 fpm against a published ceiling of 32,640. It then builds the impact estimate from the derived rate — 7.8 seconds to the ground.
+
+5. The CASE tab carries the case without needing the case study to hand. The timeline is labelled MEASURED / REPORTED / MODELLED / DRAWN / UNKNOWN, so a student can see which claims rest on what. The Columbia comparison is right there. And the seven open questions are written as the investigative agenda, not as conclusions.
+
+6. The storm calculator answers your 8‑mile question with arithmetic instead of assertion: enter the distance and your ground speed and it shows you have 64 seconds at 8 NM and 160 seconds at 20 NM — and tells you to measure from the cell’s most intense part, because this aircraft flew through 25–35 dBZ at FL350 while the 55–60 dBZ core sat 10,000 feet below it.
+
+7. Two things still need you, and both are one‑liner answers: were the recorders recovered? and what did the sounding graphic actually say? The first decides whether the case is open or closed. The second decides whether the elevator was cause or consequence.
+
+8. And the sentence I’d put on the wall of the classroom:
+
+The corner is a margin, not an altitude. Ice moved the floor. And the margin went to zero faster than anyone could see.
+
+
+
+
+
+
+
+
+
+
