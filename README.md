@@ -52,6 +52,49 @@ By contributing you agree that your contributions are licensed under the MIT Lic
 
 ---
 
+✅ COFFIN CORNER CALCULATOR v2.0 — BUILT
+Four tabs now: BAND (margin + ice countdown) · DIVE (ADS‑B reconstruction + derived rates + impact) · CASE (N722BD timeline, Columbia comparison, storm calculator, open questions) · REF (ISA, equations, recovery, evidence discipline, self‑test)
+
+What changed from v1.8
+NEW
+DETAIL
+ICE COUNTDOWN table
+Live: your stall margin at 0 / 5 / 10 / 12.5 / 15 / 20 % accretion, with the margin‑zero row highlighted. You watch it go negative.
+Margin‑zero & window‑closed breakpoints
+Computed live: "margin reaches ZERO at 13.8 % ice; policy window closed at 10.5 %."
+Icing‑type consistency check
+Flags "clear ice at −47 °C is impossible" and flags the 0–+5 °C supercooled‑liquid‑water maximum separately.
+"The computer's going to be wrong"
+Standing advisory whenever ice > 0: FMS/autothrust climb performance assumes a clean wing; a cleared level may be physically unreachable.
+Storm avoidance calculator
+Distance to the cell's most intense part + your ground speed → time available, with the 8 NM = 64 s / 10 NM = 80 s / 20 NM = 160 s arithmetic.
+DIVE: derived vertical rates
+Parses the timestamps and shows the true rate vs the reported field, flagging FIELD SATURATED and the % understatement.
+DIVE: impact estimate
+Uses the derived rate, not the saturated field. Reports time to ground, impact TAS, Mach at the last point and at sea level, and impact q.
+CASE tab
+N722BD timeline with MEASURED / REPORTED / MODELLED / DRAWN / UNKNOWN labels; Columbia‑vs‑Palm‑Beach comparison; "what should have been recognised"; the seven open NTSB questions.
+Corrections
+Sound speed in knots with mph cross‑check; tropopause handled (a = 497.9 kt constant above FL360); a·√σ in knots; q‑peak corrected to 850 psf (4.23×); impact ≈ 12:49:34 EST.
+Self‑test expanded
+24 checks, including the FL35,250 case, the ice breakpoints, the storm reaction times, and the dive q values.
+
+
+Validation it must reproduce
+CASE
+EXPECTED
+FL35,250, OAT −47, +10 % ice, M0.76
+stall margin +7.0 kt · policy window 0.87 kt (M0.771–M0.774) · margin zero at 13.8 % ice · window closed at 10.5 % · q 199 psf
+FL370, +10 % ice, M0.76
+NO‑GO — BELOW STALL, margin −1.8 kt
+FL350, clean, M0.76
+GO, window 195.0–225.7 KIAS
+DIVE
+Point B q 439 psf · Point D q 850 psf (4.22×), Mach M0.85 · impact ≈ 7.8 s → 12:49:34
+
+
+📄 THE FILE — save as icing-calculator.html, UTF‑8
+
 ## What it is
 
 At altitude, your usable speed window is not a fixed thing. It closes as you climb, it closes when you get heavy, and — critically — **ice moves the floor without moving the ceiling.** The calculator makes that explicit rather than leaving it to a mental model.
