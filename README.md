@@ -22,6 +22,19 @@ Coffin_Corner_Speed_Calculator-Pilots_Training_Aid_not_for_real_world_use_2027 -
 
 ---
 
+Respectful conduct
+This repository concerns nine people who died, and two pilots from 2008 who could not answer questions about their own accident. Keep the discussion technical and about systems.
+
+Never characterise a crew member's age, gender, race, nationality, voice, manner, or hours as a causal factor. If a demographic characteristic is relevant to an operational requirement, cite the requirement and the evidence. Otherwise leave it out.
+
+If discussion drifts toward blaming an individual, redirect to the mechanism, the evidence, and the question of what the design, the maintenance programme, the training, the certification basis and the regulator each contributed.
+
+Assume good faith. People share this case for different reasons and with different levels of training. Correct the facts, not the person.
+
+Licence
+By contributing you agree that your contributions are licensed under the MIT Licence (see LICENSE), including the additional note that the aviation content is educational only and not authorised for operational use.
+
+
 ## Table of contents
 
 - [What it is](#what-it-is)
