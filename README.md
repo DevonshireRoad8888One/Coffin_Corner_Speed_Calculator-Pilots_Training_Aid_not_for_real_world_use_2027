@@ -1,0 +1,2 @@
+# Coffin_Corner_Speed_Calculator-Pilots_Training_Aid_not_for_real_world_use_2027
+Coffin_Corner_Speed_Calculator-Pilots_Training_Aid_not_for_real_world_use_2027 -  Coffin Corner — Icing &amp; Speed-Margin Calculator
