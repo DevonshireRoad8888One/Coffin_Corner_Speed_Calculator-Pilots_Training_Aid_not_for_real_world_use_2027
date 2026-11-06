@@ -326,7 +326,7 @@ Learjet 60, N722BD · Austin–Bergstrom → Nassau · nine on board, all killed
 
 ### Two accidents, one failure archetype
 
-|  | **COLUMBIA N999LJ** — 19 Sep 2008 | **PALM BEACH N722BD** — 16 Feb 2025 |
+|  | **COLUMBIA N999LJ** — 19 Sep 2008 | **PALM BEACH N722BD** — November 1, 2026 |
 |---|---|---|
 | Initiation | Tyres ~140 psi against a 219 psi specification | Ice, convective cell, FL350 |
 | What the aircraft "believed" | Squat switch said "airborne" → reversers stowed → **forward thrust** | The wing could no longer carry the same load |
