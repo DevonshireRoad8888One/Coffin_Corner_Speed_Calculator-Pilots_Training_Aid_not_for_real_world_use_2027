@@ -1,0 +1,1382 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<title>Coffin Corner - Icing, Speed Margin &amp; Storm Calculator v2.4</title>
+<style>
+:root{--bg:#0a0f15;--p1:#111a24;--p2:#18242f;--p3:#0c141c;--ln:#27394a;--tx:#dce7f2;--dm:#8ba1b8;--am:#ffb020;--rd:#ff5252;--gr:#3ddc84;--gy:#66788c;--bl:#63b8ff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+.wrap{max-width:1340px;margin:0 auto;padding:10px 10px 40px}
+h1{font-size:clamp(15px,2.4vw,20px);margin:0 0 2px}
+h1 b{color:var(--am)}
+.sub{color:var(--dm);font-size:11.5px}
+header{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;border-bottom:2px solid var(--am);padding-bottom:8px;margin-bottom:9px}
+button,select,input{font:inherit}
+.btn{background:var(--p2);border:1px solid var(--ln);color:var(--tx);border-radius:6px;padding:7px 10px;cursor:pointer;font-size:12.5px;margin:2px 3px 2px 0}
+.btn:hover{border-color:var(--am)}
+.chip{display:inline-block;padding:4px 9px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.5px;border:1px solid var(--ln);color:var(--dm);margin-right:5px}
+.chip.ok{color:var(--gr);border-color:var(--gr)}.chip.bad{color:var(--rd);border-color:var(--rd)}.chip.wait{color:var(--am);border-color:var(--am)}
+#stamp{padding:8px 10px;background:#0b3d2e;color:#7CFFB2;font:700 12px ui-monospace,Menlo,Consolas,monospace;margin:0 0 10px;border-radius:6px;display:block}
+#stamp.bad{background:#3d0b0b;color:#ff9e9e}
+.banner{background:var(--p3);border:1px solid var(--ln);border-left:5px solid var(--rd);padding:8px 10px;border-radius:6px;font-size:12.5px;margin-bottom:10px}
+.banner b{color:var(--rd)}
+.tabs{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.tab{flex:1;min-width:72px;text-align:center;padding:9px 6px;border:1px solid var(--ln);border-radius:6px;background:var(--p1);color:var(--dm);cursor:pointer;font-weight:700;font-size:12px;letter-spacing:.6px}
+.tab.on{background:var(--am);color:#11181f;border-color:var(--am)}
+.pane{display:none}.pane.on{display:block}
+.grid{display:grid;grid-template-columns:340px 1fr;gap:10px;align-items:start}
+@media(max-width:980px){.grid{grid-template-columns:1fr}}
+.card{background:var(--p1);border:1px solid var(--ln);border-radius:8px;padding:10px;margin:0 0 10px}
+.card>h2{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--am);margin:0 0 8px}
+label{display:block;font-size:11.5px;color:var(--dm);margin:8px 0 2px}
+input,select{width:100%;padding:8px;background:var(--p3);border:1px solid var(--ln);color:var(--tx);border-radius:5px;font-size:16px}
+input:focus,select:focus{outline:none;border-color:var(--am)}
+.row{display:flex;gap:6px}.row>*{flex:1;min-width:0}
+.hint{font-size:11px;color:var(--gy);margin-top:2px;line-height:1.35}
+.hint b{color:var(--dm)}
+.v{border-radius:8px;padding:10px 12px;font-weight:800;font-size:19px;margin:0 0 10px;border:2px solid;background:rgba(99,184,255,.10);border-color:var(--bl);color:var(--bl)}
+.v.go{background:rgba(61,220,132,.13);border-color:var(--gr);color:var(--gr)}
+.v.caution{background:rgba(255,176,32,.13);border-color:var(--am);color:var(--am)}
+.v.no{background:rgba(255,82,82,.14);border-color:var(--rd);color:var(--rd)}
+.v small{display:block;font-size:12px;font-weight:400;color:var(--dm);margin-top:4px}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(142px,1fr));gap:6px}
+.k{background:var(--p2);border:1px solid var(--ln);border-radius:5px;padding:7px 8px}
+.k .l{font-size:10px;color:var(--dm);text-transform:uppercase}
+.k .v{font-size:18px;font-weight:700;margin:0;background:none;border:none;padding:0}
+.k .s{font-size:10.5px;color:var(--gy)}
+.k.good .v{color:var(--gr)}.k.warn .v{color:var(--am)}.k.bad .v{color:var(--rd)}.k.info .v{color:var(--bl)}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}
+th,td{padding:4px 6px;text-align:right;border-bottom:1px solid var(--ln);white-space:nowrap}
+th{color:var(--dm);font-size:10px;text-transform:uppercase}
+th:first-child,td:first-child{text-align:left;white-space:normal}
+tr.zero td{background:rgba(255,82,82,.14);color:#ffb3b3}
+tr.flag td{background:rgba(255,176,32,.13);color:#ffdfa6}
+tr.hl td{background:rgba(99,184,255,.12)}
+.nb{border-left:3px solid var(--am);background:rgba(255,176,32,.09);padding:7px 9px;border-radius:4px;font-size:12.5px;margin:0 0 6px}
+.nb.bad{border-left-color:var(--rd);background:rgba(255,82,82,.1)}
+.nb.info{border-left-color:var(--bl);background:rgba(99,184,255,.09)}
+.nb.ok{border-left-color:var(--gr);background:rgba(61,220,132,.09)}
+pre{background:var(--p3);border:1px solid var(--ln);padding:8px;border-radius:5px;font-size:11px;overflow:auto;white-space:pre-wrap;margin:6px 0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.notes{font-size:12.5px;color:var(--dm);margin:0;padding-left:18px}
+.notes li{margin-bottom:4px}
+footer{color:var(--gy);font-size:11px;text-align:center;margin-top:14px;border-top:1px solid var(--ln);padding-top:8px}
+.pill{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.4px;padding:2px 6px;border-radius:10px;border:1px solid var(--ln);color:var(--dm);margin-left:6px}
+.pill.ok{color:var(--gr);border-color:var(--gr)}.pill.no{color:var(--rd);border-color:var(--rd)}.pill.am{color:var(--am);border-color:var(--am)}.pill.bl{color:var(--bl);border-color:var(--bl)}
+.small{font-size:11.5px;color:var(--dm)}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;color:var(--am)}
+/* speed-band indicator */
+.track{position:relative;height:48px;background:#080b0f;border:1px solid var(--ln);border-radius:6px;margin:16px 0 4px;overflow:hidden}
+.zone{position:absolute;top:0;bottom:0}
+.zone.danger{background:linear-gradient(180deg,#241012,#120a0b)}
+.zone.caution{background:rgba(160,92,10,.55)}
+.zone.safe{background:rgba(31,150,80,.55)}
+.rawOutline{position:absolute;top:0;bottom:0;border:1px dashed rgba(255,176,32,.6);pointer-events:none}
+.mk{position:absolute;top:0;bottom:0;width:3px;transform:translateX(-1.5px)}
+.mk.st{background:var(--rd)}.mk.cl{background:var(--rd)}
+.mk.bf{background:rgba(255,255,255,.5);width:2px}
+.mk.cu{width:0;height:0;border-left:7px solid transparent;border-right:7px solid transparent;border-top:12px solid #fff;top:auto;bottom:0;transform:translateX(-7px)}
+.lab{position:absolute;top:3px;font-size:9.5px;font-weight:700;white-space:nowrap;text-shadow:0 1px 3px #000;letter-spacing:.3px}
+.lab.st,.lab.cl{color:#ffb3b3}.lab.bf{color:#d6e2ee}.lab.cu{color:#fff;bottom:2px;top:auto}
+.scale{position:relative;height:16px;font-size:9.5px;color:var(--gy);margin-top:2px}
+.scale span{position:absolute;transform:translateX(-50%)}
+#trackMach{color:var(--am)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--dm);margin-top:8px}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-2px;border:1px solid #0006}
+.lg-danger{background:#241012;border-color:#5a2222}.lg-caution{background:rgba(160,92,10,.8);border-color:#7a4a08}.lg-safe{background:rgba(31,150,80,.8);border-color:#1a6b40}
+.zoneName{position:absolute;bottom:4px;font-size:9px;font-weight:700;letter-spacing:.6px;opacity:.85}
+.zn-danger{color:#d98c8c}.zn-caution{color:#f0c08a}.zn-safe{color:#a8e6bf}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div>
+    <h1>COFFIN CORNER <b>- ICING, SPEED MARGIN &amp; STORM CALCULATOR</b></h1>
+    <div class="sub">Offline engineering study tool &middot; atmosphere &middot; aerodynamic margin &middot; wind-aware trajectory reconstruction &middot; evidence discipline</div>
+  </div>
+  <div><span class="chip" id="build">v2.4</span><span class="chip" id="modeChip">JET</span></div>
+</header>
+
+<div id="stamp">SCRIPT READY | TESTS NOT RUN | v2.4</div>
+
+<div class="banner">
+  <b>EDUCATIONAL STUDY AID - NOT FOR FLIGHT OPERATIONS.</b> This calculator does not provide approved aircraft performance, certified margins, dispatch decisions or emergency recovery instructions. Use current AFM/POH data, aircraft-specific airspeed corrections and approved procedures. The study presets are modelled and unverified. Never use its outputs to make real-time flight decisions.
+</div>
+
+<div class="tabs">
+  <div class="tab on" data-tab="env">ENVELOPE</div>
+  <div class="tab" data-tab="dive">DIVE DATA</div>
+  <div class="tab" data-tab="case">CASE STUDY</div>
+  <div class="tab" data-tab="ref">REFERENCE &amp; TESTS</div>
+</div>
+
+<!-- ============ ENVELOPE ============ -->
+<div class="pane on" id="p-env">
+<div class="grid">
+
+<div>
+  <div class="card">
+    <h2>Calculation mode</h2>
+    <label for="f_mode">Mode</label>
+    <select id="f_mode">
+      <option value="JET">JET - Mach / MMO envelope, high altitude</option>
+      <option value="PISTON">PISTON - IAS stall margin only, no coffin corner</option>
+    </select>
+    <div class="hint" id="modeHint"></div>
+  </div>
+
+  <div class="card">
+    <h2>Atmospheric and flight conditions</h2>
+    <label for="f_preset">Starting data set</label>
+    <select id="f_preset"></select>
+    <div class="hint" id="presetHint"></div>
+
+    <label for="f_pa">Pressure altitude (ft)</label>
+    <input id="f_pa" type="number" step="1" value="35250">
+    <div class="hint">Pressure altitude sets <code>p</code>. Static air temperature sets <code>rho</code> and <code>a</code>.</div>
+
+    <label for="f_oat">Static air temperature (&deg;C) - blank uses ISA</label>
+    <input id="f_oat" type="number" step="0.1" placeholder="ISA">
+    <div class="hint">Enter <b>SAT</b>, not an uncorrected TAT/OAT indication. A non-ISA temperature changes Mach and q, but not EAS at a given Mach and pressure altitude.</div>
+
+    <label for="f_ice">Ice accretion on airframe (%)</label>
+    <input id="f_ice" type="number" step="0.5" value="10">
+    <div class="hint">Scenario descriptor only in the AERODYNAMIC convention. It is <b>not</b> the same quantity as aerodynamic CLmax loss, and it is not inferred from ice thickness, cloud reflectivity, temperature or radio reports.</div>
+
+    <label for="f_clmax">Modelled CLmax loss (%)</label>
+    <input id="f_clmax" type="number" step="0.5" value="0">
+    <div class="hint">Separate aerodynamic input. Stall EAS is increased by <code>1/sqrt(1-loss)</code>. Added ice mass must be carried in the current aircraft weight separately.</div>
+
+    <label for="f_conv">Degradation convention</label>
+    <select id="f_conv">
+      <option value="A">A - AERODYNAMIC (primary): stall = Vs_ref*sqrt(W/Wref)/sqrt(1-CLmax loss)</option>
+      <option value="B">B - ICE HEURISTIC (legacy): stall = Vs_ref*sqrt(W/Wref)*(1+ice %)</option>
+      <option value="C">C - ICE MAPPED TO CLmax: CLmax loss = 1-1/(1+ice %)^2</option>
+    </select>
+    <div class="hint" id="convHint"></div>
+
+    <label for="f_mach" id="l_mach">Current / target Mach</label>
+    <input id="f_mach" type="number" step="0.001" value="0.76">
+
+    <label for="f_weight">Current aircraft weight (lb)</label>
+    <input id="f_weight" type="number" step="1" value="27500">
+  </div>
+
+  <div class="card">
+    <h2>Stall reference data by configuration</h2>
+    <div class="hint">Enter clean and flap-setting stall speeds in <b>KEAS</b> (equivalent airspeed). Every configuration carries its own evidence tier and source reference. The configuration selected below drives the envelope.</div>
+    <div class="tw"><table id="tCfg"></table></div>
+    <button class="btn" id="bAddCfg">+ Add configuration</button>
+    <label for="f_cfgsel">Configuration to calculate</label>
+    <select id="f_cfgsel"></select>
+    <div class="hint" id="cfgHint"></div>
+  </div>
+
+  <div class="card">
+    <h2>Aircraft performance data</h2>
+    <label for="f_vs">Selected configuration stall reference (KEAS)</label>
+    <input id="f_vs" type="number" step="0.1" value="143.3">
+    <label for="f_wref">Reference aircraft weight (lb)</label>
+    <input id="f_wref" type="number" step="1" value="27500">
+    <label for="f_vmo">VMO (KCAS)</label>
+    <input id="f_vmo" type="number" step="1" value="340">
+    <div class="hint">Calibrated airspeed. Convert AFM KIAS with the aircraft's approved IAS-to-CAS correction table before entering it.</div>
+    <label for="f_mmo">MMO (Mach)</label>
+    <input id="f_mmo" type="number" step="0.01" value="0.81">
+    <label for="f_stepalt">Stepped altitude (ft)</label>
+    <input id="f_stepalt" type="number" step="1" value="37000">
+    <label for="f_stepmach">Stepped MMO (Mach)</label>
+    <input id="f_stepmach" type="number" step="0.01" value="0.78">
+    <label for="f_stepmode">Stepped limit applies</label>
+    <select id="f_stepmode">
+      <option value="at">AT or above the stepped altitude</option>
+      <option value="above">STRICTLY above the stepped altitude</option>
+      <option value="none">Do not apply stepped limit</option>
+    </select>
+    <div class="hint">Three MMO figures circulate publicly: 0.78 / 0.80 / 0.81. Only the applicable AFM settles the approved value. This model can compare them; it cannot establish which is approved for a particular aircraft.</div>
+    <label for="f_tier">Evidence tier (selected configuration)</label>
+    <select id="f_tier">
+      <option>CERTIFIED</option><option>TYPE-DATA</option><option>MEASURED</option>
+      <option>REPORTED</option><option>EXPERIMENTAL</option><option>MODELLED</option>
+      <option selected>ILLUSTRATIVE</option><option>UNKNOWN</option>
+    </select>
+    <label for="f_src">Source / aircraft-document reference</label>
+    <input id="f_src" type="text" value="Discussion figure 143.3, KIAS-derived estimate treated as a KEAS proxy; not an LR60 certified value.">
+  </div>
+
+  <div class="card">
+    <h2>User-defined study margins</h2>
+    <label for="f_sb">Buffer above modelled stall (KEAS)</label>
+    <input id="f_sb" type="number" step="1" value="10">
+    <label for="f_ob">Buffer below upper limit (KEAS)</label>
+    <input id="f_ob" type="number" step="1" value="10">
+    <div class="hint">Analytical buffers selected by the user. Not approved operating margins and not regulatory limits.</div>
+  </div>
+
+  <div class="card">
+    <h2>Case presets</h2>
+    <div id="caseBtns"></div>
+    <div class="hint">Presets load the scenario conditions together with the stated stall reference and degradation convention, so each published figure stays reproducible.</div>
+  </div>
+</div>
+
+<div>
+  <div class="card">
+    <h2>Result</h2>
+    <div class="v" id="verdict">READY - enter or confirm the study inputs.</div>
+    <div class="kv" id="kvs"></div>
+    <div style="margin-top:8px">
+      <button class="btn" id="bCopy">Copy brief</button>
+      <span class="small" id="copyMsg"></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Speed-band indicator</h2>
+    <div class="track" id="track"></div>
+    <div class="scale" id="trackScale"></div>
+    <div class="scale" id="trackMach"></div>
+    <div class="legend">
+      <span><i class="lg-danger"></i>danger - outside the raw aerodynamic interval</span>
+      <span><i class="lg-caution"></i>caution - raw aerodynamic interval, short of a buffer</span>
+      <span><i class="lg-safe"></i>safe - user buffer interval</span>
+      <span>&#9651; current Mach-derived EAS</span>
+    </div>
+    <div class="hint" id="trackHint"></div>
+  </div>
+
+  <div class="card">
+    <h2>Speed-envelope comparison</h2>
+    <div class="tw"><table id="tBand"></table></div>
+    <div class="hint" id="bandHint"></div>
+  </div>
+
+  <div class="card">
+    <h2>CLmax sensitivity - aerodynamic, not an ice scale</h2>
+    <div class="tw"><table id="tClmax"></table></div>
+    <div class="hint" id="clmaxHint">Varies CLmax loss only. It is applied to the <b>selected stall reference</b>, which may itself already carry a CLmax loss (the 185 chart-derived reference does). It does not infer CLmax loss from ice thickness, cloud reflectivity, temperature or radio reports.</div>
+  </div>
+
+  <div class="card">
+    <h2>Ice scenario table - linear heuristic, legacy convention</h2>
+    <div class="tw"><table id="tIce"></table></div>
+    <div class="hint">Convention B only: stall EAS = reference x sqrt(W/Wref) x (1 + ice %). This is a linear heuristic. It is <b>not</b> the aerodynamic form and is <b>not</b> interchangeable with the CLmax table. The row where the stall margin reaches zero is always included.</div>
+  </div>
+
+  <div class="card">
+    <h2>Atmosphere and dynamic pressure</h2>
+    <div class="tw"><table id="tAtm"></table></div>
+    <div class="hint">Dynamic pressure is a flight-condition quantity, not a certified structural-load or flutter margin.</div>
+  </div>
+
+  <div class="card">
+    <h2>Show the working &amp; assumptions</h2>
+    <pre id="working">Calculations will appear here.</pre>
+  </div>
+
+  <div class="card">
+    <h2>Validation and model warnings</h2>
+    <div id="warnings"></div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<!-- ============ DIVE ============ -->
+<div class="pane" id="p-dive">
+  <div class="banner">
+    <b>DIVE DATA CAUTION.</b> Groundspeed is not true airspeed. This page calculates the ground-referenced trajectory first. Air-relative TAS / Mach / q are estimates and are only produced when track, wind, vertical-wind, pressure altitude and temperature information are supplied. Sparse ADS-B data cannot establish aircraft control state or accident cause.
+  </div>
+
+  <div class="grid">
+    <div>
+      <div class="card">
+        <h2>Flight-data points (up to 6)</h2>
+        <div class="tw"><table id="tPts"></table></div>
+        <div style="margin-top:8px">
+          <button class="btn" id="bAddPt">+ Add point</button>
+          <button class="btn" id="bClearPts">Clear points</button>
+          <button class="btn" id="bLoadPts">Load discussion points</button>
+        </div>
+        <div class="hint">GPS altitude is used only for ground-referenced altitude change. Pressure altitude is a separate input for atmospheric calculations. Reported vertical rate is retained for comparison, not treated as truth. Times must be HH:MM:SS.</div>
+      </div>
+
+      <div class="card">
+        <h2>Wind and atmospheric assumptions</h2>
+        <label for="d_wdir">Wind FROM true (&deg;)</label>
+        <input id="d_wdir" type="number" step="1" value="0">
+        <label for="d_wspd">Wind speed (kt)</label>
+        <input id="d_wspd" type="number" step="1" value="0">
+        <label for="d_wvert">Vertical wind (fpm, + up)</label>
+        <input id="d_wvert" type="number" step="10" value="0">
+        <label for="d_sat">Static air temperature (&deg;C)</label>
+        <input id="d_sat" type="number" step="0.1" placeholder="ISA">
+        <label for="d_satthr">Reported vertical-rate saturation threshold (fpm)</label>
+        <input id="d_satthr" type="number" step="100" value="32000">
+        <div class="hint">The threshold is a user-supplied field diagnostic, not a universal ADS-B standard. Vertical wind defaults to an assumed zero unless changed. The model assumes wind is constant across the selected points.</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="card">
+        <h2>Ground-trajectory reconstruction</h2>
+        <div class="tw"><table id="tGround"></table></div>
+      </div>
+      <div class="card">
+        <h2>Air-relative estimates</h2>
+        <div class="tw"><table id="tAir"></table></div>
+        <div class="hint">No air-relative estimate is produced until wind, track, pressure altitude and temperature inputs are available.</div>
+      </div>
+      <div class="card">
+        <h2>Reported versus computed</h2>
+        <div class="tw"><table id="tCmp"></table></div>
+        <div class="hint">Where the supplied material carries a reported Mach, vertical rate or dynamic pressure, the computed value is shown beside it. A gap is a finding about the data, not a reason to overwrite either number.</div>
+      </div>
+      <div class="card">
+        <h2>Pressure-altitude cross-check</h2>
+        <div id="paCheck"></div>
+      </div>
+      <div class="card">
+        <h2>Interpretation guardrails</h2>
+        <ul class="notes">
+          <li>Average altitude-derived vertical rate is a segment average, not an instantaneous FDR sample.</li>
+          <li>Wind correction requires a true track and a wind direction reported as wind FROM.</li>
+          <li>Vertical wind is subtracted from ground vertical speed to estimate air-relative vertical motion.</li>
+          <li>Mach uses local speed of sound from the supplied static temperature; q also requires pressure altitude.</li>
+          <li>No impact speed, impact-G or elevator-failure estimate is produced from sparse points.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CASE ============ -->
+<div class="pane" id="p-case">
+  <div class="banner">
+    <b>CASE STATUS: HYPOTHESIS / TEACHING MATERIAL.</b> The following is a structured restatement of the supplied v2.0/v2.2 calculator and discussion. It is not an NTSB probable-cause finding and has not been independently verified in this file. No victims, crew or family members are named.
+  </div>
+
+  <div class="card">
+    <h2>N722BD discussion timeline</h2>
+    <div class="tw"><table>
+      <thead><tr><th>Time / item</th><th>Statement in supplied material</th><th style="text-align:left">Evidence status</th></tr></thead>
+      <tbody>
+        <tr><td>12:46</td><td>FL350 level, near the cell; crew reports ice and about 700 ft excursions</td><td style="text-align:left"><span class="pill am">REPORTED - VERIFY</span></td></tr>
+        <tr><td>12:47:51</td><td>Tracked position overlaps moderate precipitation reflectivity (25-35 dBZ at FL350); the 55-60 dBZ core was about 10,000 ft below</td><td style="text-align:left"><span class="pill bl">MODELLED</span></td></tr>
+        <tr><td>12:47:xx</td><td>"Picking up precipitation. We need to climb 370." ATC approves</td><td style="text-align:left"><span class="pill am">REPORTED</span></td></tr>
+        <tr><td>12:48:07</td><td>Top of climb 35,250 ft - only +250 ft above cruise. M0.76, IAS 242.4 KIAS, stall margin about +39 kt, 10/10 policy window about 35 kt</td><td style="text-align:left"><span class="pill ok">MEASURED</span></td></tr>
+        <tr><td>~12:48:28</td><td>Loss of control. Vertical rate accelerates smoothly and monotonically; no step change visible at 1 Hz</td><td style="text-align:left"><span class="pill bl">MODELLED</span></td></tr>
+        <tr><td>12:48:58</td><td>GPS 26,272 ft, GS 484 kt, VS -26,368 fpm. Reported M0.92 (peak), q 439 psf (2.18x cruise)</td><td style="text-align:left"><span class="pill ok">MEASURED</span></td></tr>
+        <tr><td>12:49:16</td><td>GPS 14,806 ft, GS 362 kt, VS field saturated at -32,640. True rate about 38,200 fpm. Reported M0.82, q 573 psf (2.85x)</td><td style="text-align:left"><span class="pill ok">MEASURED</span></td></tr>
+        <tr><td>12:49:26</td><td>GPS 6,506 ft, GS 251 kt. Pressure-altitude field frozen at 8,750 ft ("NO NEW VALUE"). True rate about 49,800 fpm. Reported M0.85, q 850 psf (4.23x)</td><td style="text-align:left"><span class="pill am">MIXED</span></td></tr>
+        <tr><td>~12:49:34</td><td>Impact, near vertical, Military Trail area</td><td style="text-align:left"><span class="pill ok">MEASURED</span></td></tr>
+        <tr><td>After impact</td><td>Left elevator recovered in three pieces, 1.3-3.8 mi from the crater. Cause and sequence require wreckage and FDR findings.</td><td style="text-align:left"><span class="pill am">REPORTED - VERIFY</span></td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="card">
+    <h2>Competing mechanisms to test - not ranked as findings</h2>
+    <ul class="notes">
+      <li><b>Icing-related aerodynamic degradation:</b> examine ice shape, CLmax effects, asymmetry, tailplane condition and aircraft-specific icing certification.</li>
+      <li><b>Autopilot / autothrottle interaction:</b> establish engagement, selected modes, control commands, trim and disconnect reason from FDR and system documentation.</li>
+      <li><b>Mach / transonic effects:</b> distinguish MMO exceedance from critical Mach, shock effects and actual aircraft pitch response.</li>
+      <li><b>Structural or control-system failure:</b> determine whether elevator separation preceded or followed the initial loss of control.</li>
+      <li><b>Atmospheric / air-data inconsistency:</b> reconcile reported temperature, icing description, soundings, radar, wind and probe condition.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>High-value evidence still needed</h2>
+    <ul class="notes">
+      <li>Aircraft-specific AFM / approved stall-speed data and flap schedule.</li>
+      <li>Actual aircraft weight, CG and configuration at the relevant time.</li>
+      <li>FDR: Mach, calibrated/indicated airspeed, AoA, pitch, roll, control positions, trim, vertical acceleration, AP modes and disconnect.</li>
+      <li>CVR and ATC audio with verified timestamps.</li>
+      <li>Pressure altitude, GPS altitude, SAT/TAT, wind vector and radar/sounding data.</li>
+      <li>Wreckage examination, elevator fracture analysis and maintenance history.</li>
+      <li>Operator training and simulator-session records.</li>
+    </ul>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Storm-distance study tool</h2>
+      <label for="s_dist">Distance to reference point (NM)</label>
+      <input id="s_dist" type="number" step="0.1" value="8">
+      <label for="s_gs">Groundspeed (kt)</label>
+      <input id="s_gs" type="number" step="1" value="450">
+      <label for="s_bo">Ordinary-cell study buffer (NM)</label>
+      <input id="s_bo" type="number" step="0.5" value="10">
+      <label for="s_bs">Severe-cell study buffer (NM)</label>
+      <input id="s_bs" type="number" step="0.5" value="20">
+      <div class="tw"><table id="tStorm"></table></div>
+      <div class="hint">The buffers are user-defined study values, not universal regulatory minima. Confirm current local guidance and consider storm movement, growth, route geometry and manoeuvring space. Times are distance divided by groundspeed; they are not reaction-time guarantees or declarations of safe separation.</div>
+    </div>
+
+    <div class="card">
+      <h2>Recovery material - classification only</h2>
+      <div class="hint">Not a checklist or flight instruction. Do not use the categories below to select control inputs in an aircraft. Use the applicable AFM/QRH and approved upset-recovery training.</div>
+      <div class="tw"><table>
+        <thead><tr><th>Flight regime</th><th style="text-align:left">Why it must stay separate</th></tr></thead>
+        <tbody>
+          <tr><td>High-speed spiral / dive</td><td style="text-align:left">Energy state, bank, speed limits and structural loading matter.</td></tr>
+          <tr><td>Conventional wing stall</td><td style="text-align:left">Angle of attack and aircraft-specific stall recovery procedure matter.</td></tr>
+          <tr><td>Deep / super stall</td><td style="text-align:left">Tail effectiveness and aircraft design characteristics matter.</td></tr>
+          <tr><td>Tailplane stall</td><td style="text-align:left">May require a different response from a wing stall.</td></tr>
+          <tr><td>Flat spin</td><td style="text-align:left">Departure state; prevention and type-specific guidance are essential.</td></tr>
+          <tr><td>Control-surface failure</td><td style="text-align:left">Normal pitch-control assumptions may no longer apply.</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ REFERENCE ============ -->
+<div class="pane" id="p-ref">
+  <div class="card">
+    <h2>Equations used</h2>
+    <pre>ISA / density
+  p, T_ISA from a layered ISA model (troposphere to 11,000 m, isothermal above,
+  with the tropopause pressure taken continuously from the troposphere formula)
+  rho = p / (R T_static)
+  a   = sqrt(gamma R T_static)
+  sigma = rho / rho0
+
+Mach state
+  TAS = M a
+  EAS = TAS sqrt(sigma)
+  EAS [m/s] = M sqrt(gamma p / rho0)          (OAT-independent)
+  EAS [kt]  = M sqrt(gamma p / rho0) x 1.943844492
+
+Subsonic pitot / calibrated airspeed
+  qc    = p0 [(1 + 0.2 M_CAS^2)^3.5 - 1]
+  M_CAS = sqrt(5 [ (1 + qc/p0)^(2/7) - 1 ])        &lt;-- the "+1" is required
+  CAS   = M_CAS a0
+  Aircraft position/instrument corrections are not included.
+
+  Inverting an impact pressure against a different reference pressure gives the
+  TRUE Mach at that pressure:
+  M = sqrt(5 [ (1 + qc/p)^(2/7) - 1 ])
+
+Stall sensitivity
+  Vs_weight   = Vs_ref sqrt(W / W_ref)
+  Vs_degraded = Vs_weight / sqrt(1 - CLmax_loss)     (aerodynamic form)
+
+VMO / MMO upper boundary
+  Convert supplied VMO KCAS to impact pressure qc at sea level, then invert qc
+  against the current static pressure for the true Mach.
+  Upper Mach = min(MMO_effective, Mach_from_VMO)
+
+Study buffer interval
+  Lower = (Vs_degraded + stall buffer) / (a sqrt(sigma))
+  Upper = Upper_Mach - overspeed buffer / (a sqrt(sigma))
+
+Dynamic pressure
+  q = 0.5 rho TAS^2  =  0.5 gamma p M^2     (equal when the same T_static is
+                                            used for rho and for a; SI units)
+  1 psf = 47.88025898 Pa</pre>
+  </div>
+
+  <div class="card">
+    <h2>Speed-band indicator - how to read it</h2>
+    <ul class="notes">
+      <li>The track is an <b>equivalent-airspeed axis in knots</b>, left to right, zero at the left edge. The amber row beneath is the same axis expressed as <b>Mach</b> at the current altitude and temperature.</li>
+      <li>The dashed amber rectangle is the <b>raw aerodynamic interval</b> - modelled stall to operating ceiling, with no buffers applied.</li>
+      <li>The solid green span is the <b>user buffer interval</b>: inside both of your buffers, so at least the stall buffer above the stall and the overspeed buffer below the ceiling.</li>
+      <li>The pale dashed lines are the <b>modelled lower and upper boundaries</b> - the buffer lines, expressed as Mach by Lower = (Vs_degraded + stall buffer)/(a*sqrt(sigma)) and Upper = Upper_Mach - overspeed buffer/(a*sqrt(sigma)).</li>
+      <li>Red lines mark the modelled stall and the operating ceiling. <b>&#9651; Current Mach-derived EAS</b> is where you are right now.</li>
+      <li><b>Black</b> is danger - outside the raw aerodynamic interval. <b>Brown</b> is caution - inside it but short of a buffer.</li>
+      <li>It is a study aid. It is not an operating clearance and it carries no regulatory authority.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Atmosphere reference table</h2>
+    <div class="tw"><table id="tIsa"></table></div>
+  </div>
+
+  <div class="card">
+    <h2>Evidence tiers</h2>
+    <div class="tw"><table id="tTiers"></table></div>
+  </div>
+
+  <div class="card">
+    <h2>Correction log</h2>
+    <div id="corrLog"></div>
+  </div>
+
+  <div class="card">
+    <h2>Automated self-tests</h2>
+    <button class="btn" id="bTests">Run all self-tests</button>
+    <div class="tw"><table id="tTests"></table></div>
+    <div class="hint">The count is derived at runtime and can never drift from the number of checks actually executed. The suite is the specification: changing a physical constant or a unit factor requires changing the matching check in the same commit.</div>
+  </div>
+</div>
+
+<footer>Coffin Corner Calculator v2.4 &middot; Offline single-file study application &middot; No external libraries, tracking or network calls</footer>
+</div>
+
+<script>
+'use strict';
+/* ---------------- constants (exact, pinned by self-test) ---------------- */
+var R=287.05287, GA=1.4, RHO0=1.225, KT=1.943844492, MPH=2.236936292,
+    PSF=47.88025898, T0=288.15, P0=101325, LC=0.0065, G=9.80665, HT=11000;
+var TT=216.65, EXPO=G/(R*LC), A0M=Math.sqrt(GA*R*T0);
+var P_TROP=P0*Math.pow(TT/T0,EXPO);
+var ICE_EQ=0.1735537;   /* exact CLmax loss for which 1/sqrt(1-loss) = 1.100000 */
+var KT2MS=0.514444;    /* knots -> metres per second */
+var TIERS=['CERTIFIED','TYPE-DATA','MEASURED','REPORTED','EXPERIMENTAL','MODELLED','ILLUSTRATIVE','UNKNOWN'];
+
+function $(id){return document.getElementById(id);}
+function num(id){var v=$(id).value;if(v===''||v===null)return null;var n=parseFloat(v);return isNaN(n)?null:n;}
+function fx(n,d){d=(d===undefined)?2:d;if(n===null||n===undefined||!isFinite(n))return '--';return n.toFixed(d);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+/* ---------------- atmosphere ---------------- */
+function isaAt(hM){
+  if(hM<=HT){var T=T0-LC*hM;return {p:P0*Math.pow(T/T0,EXPO),T:T};}
+  return {p:P_TROP*Math.exp(-G*(hM-HT)/(R*TT)),T:TT};
+}
+function atmos(paFt,oatC){
+  var h=paFt*0.3048, is=isaAt(h);
+  var T=(oatC===null||oatC===undefined)?is.T:oatC+273.15;
+  var rho=is.p/(R*T), sigma=rho/RHO0;
+  var a=Math.sqrt(GA*R*T), aKt=a*KT, aSigKt=aKt*Math.sqrt(sigma);
+  return {h:h,p:is.p,T:T,rho:rho,sigma:sigma,a:a,aKt:aKt,aSigKt:aSigKt,isaT:is.T};
+}
+/* pitot / CAS  (the "+1" is mandatory) */
+function casToQc(casKt){var m=casKt/(A0M*KT);return P0*(Math.pow(1+0.2*m*m,3.5)-1);}
+function qcToMach(qc,pRef){var t=1+qc/pRef;return Math.sqrt(Math.max(0,5*(Math.pow(t,2/7)-1)));}
+function qcToCas(qc){return qcToMach(qc,P0)*A0M*KT;}
+function machFromQc(qc,pPa){return qcToMach(qc,pPa);}
+
+/* ---------------- presets ---------------- */
+var PRESETS={
+  disc:{label:"N722BD discussion model - 143.3 KEAS clean - illustrative / unverified",
+    vs:143.3,wRef:27500,vmo:340,mmo:0.81,stepAlt:37000,stepMach:0.78,tier:"ILLUSTRATIVE",
+    src:"Discussion figure 143.3, expressed as a KIAS-derived estimate, not certified KEAS. Treated as a KEAS proxy without an IAS/CAS installation correction. Not an LR60 certified value.",
+    cfgName:"Clean",
+    note:"143.3 is the CLEAN reference. 143.3 x 1/sqrt(1-0.40) = 185.00 exactly, which is where the 185 figure in the chart-derived model comes from."},
+  chart:{label:"N722BD chart-derived model - 185 kt clean - illustrative / unverified",
+    vs:185,wRef:27500,vmo:340,mmo:0.81,stepAlt:37000,stepMach:0.78,tier:"ILLUSTRATIVE",
+    src:"Back-calculated from the commentary chart stall line. NOT an AFM figure. 185.00 = 143.3 x 1/sqrt(1-0.40), i.e. this figure already carries about 40% CLmax loss.",
+    cfgName:"Clean",
+    note:"185.00 already carries about 40% CLmax loss relative to the 143.3 clean reference. Applying +10% ice linearly on top gives 203.5 kt."},
+  custom:{label:"Custom aircraft - enter your own data",
+    vs:143.3,wRef:27500,vmo:340,mmo:0.81,stepAlt:37000,stepMach:0.78,tier:"UNKNOWN",
+    src:"",cfgName:"Clean",
+    note:"Enter AFM/POH figures and set the evidence tier to match the document you used."}
+};
+var CASES=[
+ {n:"N722BD TOP OF CLIMB - FL35250 - +10% ice - M0.76",pre:"chart",conv:"B",pa:35250,oat:-47,ice:10,clmax:0,mach:0.76,w:27500,
+  d:"Chart-derived 185 reference with the legacy linear +10% ice penalty. Reproduces the published +39 kt stall margin and about 35 kt policy window."},
+ {n:"N722BD - same point - 143.3 clean with 40% CLmax loss",pre:"disc",conv:"A",pa:35250,oat:-47,ice:10,clmax:40,mach:0.76,w:27500,
+  d:"The identical physical state expressed the aerodynamic way: 143.3 x 1/sqrt(1-0.40) = 185.00 kt, so the margin is the same as the clean row above. This is the reconciliation."},
+ {n:"N722BD - FL370 - +10% ice - M0.76",pre:"chart",conv:"B",pa:37000,oat:null,ice:10,clmax:0,mach:0.76,w:27500,
+  d:"Stepped MMO M0.78 applies at and above FL370. The ceiling, not the stall, is the binding constraint."},
+ {n:"N722BD - FL350 - clean - M0.76",pre:"chart",conv:"B",pa:35000,oat:null,ice:0,clmax:0,mach:0.76,w:27500,
+  d:"Clean air reference point for the dive reconstruction."},
+ {n:"FL100 - clean - M0.60",pre:"chart",conv:"B",pa:10000,oat:null,ice:0,clmax:0,mach:0.60,w:27500,
+  d:"Low-altitude sanity case. No coffin corner here."}
+];
+
+/* ---------------- configurations (per-configuration stall data) ---------------- */
+var CONFIGS=[{name:'Clean',keas:143.3,tier:'ILLUSTRATIVE',
+  src:'Discussion figure 143.3, expressed as a KIAS-derived estimate, not certified KEAS. Treated as a KEAS proxy without an IAS/CAS installation correction. Not an LR60 certified value.'}];
+var CFGSEL=0;
+
+function tierOptions(sel){
+  var h='';
+  for(var i=0;i<TIERS.length;i++)h+='<option'+(TIERS[i]===sel?' selected':'')+'>'+TIERS[i]+'</option>';
+  return h;
+}
+function syncCfgToEnvelope(){
+  var c=CONFIGS[CFGSEL];if(!c)return;
+  $('f_vs').value=c.keas;$('f_tier').value=c.tier;$('f_src').value=c.src;
+}
+function syncEnvelopeToCfg(){
+  var c=CONFIGS[CFGSEL];if(!c)return;
+  var v=num('f_vs');if(v!==null)c.keas=v;
+  c.tier=$('f_tier').value;c.src=$('f_src').value;
+}
+function renderCfgTable(){
+  var h='<thead><tr><th>Configuration</th><th>1-G stall ref (KEAS)</th><th>Evidence tier</th><th>Source / document reference</th><th></th></tr></thead><tbody>';
+  for(var i=0;i<CONFIGS.length;i++){
+    var c=CONFIGS[i];
+    h+='<tr'+(i===CFGSEL?' class="hl"':'')+'>'
+      +'<td><input data-cfg="'+i+'" data-f="name" value="'+esc(c.name)+'" style="padding:4px;font-size:12px"></td>'
+      +'<td><input data-cfg="'+i+'" data-f="keas" type="number" step="0.1" value="'+c.keas+'" style="padding:4px;font-size:12px"></td>'
+      +'<td><select data-cfg="'+i+'" data-f="tier" style="padding:4px;font-size:12px">'+tierOptions(c.tier)+'</select></td>'
+      +'<td><input data-cfg="'+i+'" data-f="src" value="'+esc(c.src)+'" style="padding:4px;font-size:12px"></td>'
+      +'<td><button class="btn" data-del="'+i+'" style="padding:3px 9px;font-size:11px">Remove</button></td></tr>';
+  }
+  $('tCfg').innerHTML=h+'</tbody>';
+  $('tCfg').querySelectorAll('input[data-cfg],select[data-cfg]').forEach(function(el){
+    el.addEventListener('input',function(){
+      var i=parseInt(el.getAttribute('data-cfg'),10), f=el.getAttribute('data-f'), v=el.value;
+      if(f==='keas'){var n=parseFloat(v);CONFIGS[i].keas=isNaN(n)?0:n;}else{CONFIGS[i][f]=v;}
+      if(i===CFGSEL){$('f_vs').value=CONFIGS[i].keas;$('f_tier').value=CONFIGS[i].tier;$('f_src').value=CONFIGS[i].src;}
+      renderEnv();
+    });
+  });
+  $('tCfg').querySelectorAll('button[data-del]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var i=parseInt(b.getAttribute('data-del'),10);
+      if(CONFIGS.length>1){CONFIGS.splice(i,1);if(CFGSEL>=CONFIGS.length)CFGSEL=CONFIGS.length-1;}
+      else{CONFIGS[0]={name:'Clean',keas:143.3,tier:'ILLUSTRATIVE',src:''};}
+      syncCfgToEnvelope();renderCfgTable();renderEnv();
+    });
+  });
+  var s=$('f_cfgsel'),opts='';
+  for(var j=0;j<CONFIGS.length;j++)opts+='<option value="'+j+'"'+(j===CFGSEL?' selected':'')+'>'+esc(CONFIGS[j].name)+'</option>';
+  s.innerHTML=opts;
+  var c=CONFIGS[CFGSEL];
+  $('cfgHint').innerHTML=c?('Selected: <b>'+esc(c.name)+'</b> - '+fx(c.keas,1)+' KEAS, tier '+esc(c.tier)+'. '+(c.src?esc(c.src):'No source reference supplied.')):'No configuration selected.';
+}
+
+/* ---------------- degradation conventions ---------------- */
+function iceToClmax(icePct){return 1-1/Math.pow(1+icePct/100,2);}
+function stallFactor(conv,icePct,clmaxPct){
+  if(conv==='B')return 1+icePct/100;
+  if(conv==='C')return 1/Math.sqrt(1-Math.max(0,Math.min(0.9999,iceToClmax(icePct))));
+  return 1/Math.sqrt(1-Math.max(0,Math.min(0.9999,clmaxPct/100)));
+}
+function stepApplies(pa,stepAlt,mode){
+  if(mode==='at')return pa>=stepAlt;
+  if(mode==='above')return pa>stepAlt;
+  return false;
+}
+
+/* ---------------- envelope calculation ---------------- */
+function calcEnvelope(){
+  var mode=$('f_mode').value, warns=[];
+  var pa=num('f_pa'), oat=num('f_oat'), ice=num('f_ice'), clmax=num('f_clmax'),
+      mach=num('f_mach'), weight=num('f_weight'), vsRef=num('f_vs'), wRef=num('f_wref'),
+      vmo=num('f_vmo'), mmo=num('f_mmo'), stepAlt=num('f_stepalt'), stepMach=num('f_stepmach'),
+      stepMode=$('f_stepmode').value, sb=num('f_sb'), ob=num('f_ob'), conv=$('f_conv').value;
+  if(ice===null)ice=0; if(clmax===null)clmax=0;
+  if(pa===null){warns.push(['bad','Pressure altitude is required. Enter it before a result can be produced.']);return {mode:mode,warns:warns,ok:false};}
+  if(pa<0||pa>60000)warns.push(['bad','Pressure altitude outside the modelled range (0-60,000 ft).']);
+  if(ice<0||ice>100)warns.push(['bad','Ice accretion must be between 0 and 100 percent.']);
+  if(clmax<0||clmax>=100)warns.push(['bad','CLmax loss must satisfy 0 <= loss < 100 percent. The factor 1/sqrt(1-loss) is undefined at or above 100 percent.']);
+  if(weight===null)warns.push(['bad','Current aircraft weight is required for the weight scaling.']);
+  if(wRef===null||wRef<=0)warns.push(['bad','Reference aircraft weight must be greater than zero.']);
+  if(vsRef===null||vsRef<=0)warns.push(['bad','Stall reference speed is required.']);
+  if(sb===null||ob===null||sb<0||ob<0)warns.push(['bad','Study buffers must be entered as non-negative numbers.']);
+  if(mode==='JET'&&(mach===null||mach<0))warns.push(['bad','Current / target Mach is required in JET mode.']);
+
+  var A=atmos(pa,oat);
+  var out={mode:mode,A:A,warns:warns,ok:true,pa:pa,oat:oat,ice:ice,clmax:clmax,conv:conv};
+  var wRatio=(weight!==null&&wRef&&wRef>0)?Math.sqrt(weight/wRef):1;
+  out.wRatio=wRatio;
+
+  if(mode==='PISTON'){
+    var ias=mach;
+    var st=vsRef*wRatio*stallFactor(conv,ice,clmax);
+    out.stall=st; out.ias=ias;
+    out.margin=(ias!==null)?ias-st:null;
+    out.sb=sb; out.ob=ob;
+    out.floorEas=null; out.ceilEas=null; out.ceilRaw=null;
+    if(ias!==null&&ias<st)out.verdict={c:'no',t:'BELOW THE MODELLED STALL',s:'IAS ' + fx(ias,1) + ' kt is below the modelled stall ' + fx(st,1) + ' kt.'};
+    else if(out.margin!==null&&sb!==null&&out.margin<sb)out.verdict={c:'caution',t:'MARGIN SHORT OF THE USER BUFFER',s:'Margin ' + fx(out.margin,1) + ' kt, user buffer ' + fx(sb,1) + ' kt.'};
+    else if(out.margin!==null)out.verdict={c:'go',t:'WITHIN THE USER BUFFER',s:'Margin ' + fx(out.margin,1) + ' kt.'};
+    out.working=['PISTON MODE',
+      '  current IAS (entered)      = ' + (ias===null?'--':fx(ias,1)) + ' kt',
+      '  modelled stall             = Vs_ref x sqrt(W/Wref) x degradation factor',
+      '                           = ' + fx(vsRef,1) + ' x ' + fx(wRatio,4) + ' x ' + fx(stallFactor(conv,ice,clmax),4) + ' = ' + fx(st,1) + ' kt KEAS',
+      '  margin                    = IAS - stall = ' + (out.margin===null?'--':fx(out.margin,1)) + ' kt'].join('\n');
+    return out;
+  }
+
+  /* JET */
+  var stepOn=stepApplies(pa,stepAlt,stepMode);
+  var mmoEff=(stepOn&&stepMach!==null)?stepMach:mmo;
+  out.mmoEff=mmoEff; out.stepOn=stepOn;
+
+  var vmoMach=null;
+  if(vmo!==null&&vmo>0){vmoMach=machFromQc(casToQc(vmo),A.p);}
+  out.vmoMach=vmoMach;
+  var upperMach=null;
+  if(mmoEff!==null&&vmoMach!==null)upperMach=Math.min(mmoEff,vmoMach);
+  else if(mmoEff!==null)upperMach=mmoEff;
+  else if(vmoMach!==null)upperMach=vmoMach;
+  out.upperMach=upperMach;
+
+  var vsW=vsRef*wRatio, vsDeg=vsW*stallFactor(conv,ice,clmax);
+  out.stall=vsDeg; out.sb=sb; out.ob=ob;
+  var floorEas=vsDeg+sb, ceilEas=(upperMach!==null)?upperMach*A.aSigKt-ob:null;
+  var ceilRaw=(upperMach!==null)?upperMach*A.aSigKt:null;
+  out.floorEas=floorEas; out.ceilEas=ceilEas; out.ceilRaw=ceilRaw;
+  out.window=(ceilEas!==null)?ceilEas-floorEas:null;
+  out.curEas=(mach!==null)?mach*A.aSigKt:null;
+  out.margin=(out.curEas!==null)?out.curEas-vsDeg:null;
+  out.tasMps=(mach!==null)?mach*A.a:null;
+  out.tasKt=(mach!==null)?mach*A.aKt:null;
+  out.q=(mach!==null)?0.5*A.rho*out.tasMps*out.tasMps:null;
+
+  if(upperMach===null)warns.push(['bad','No usable upper limit: supply both MMO and VMO.']);
+  else if(mach!==null&&mach>upperMach)out.verdict={c:'no',t:'ABOVE THE OPERATING LIMIT',s:'M' + fx(mach,3) + ' is above the effective limit M' + fx(upperMach,3) + '.'};
+  else if(out.curEas!==null&&out.curEas<vsDeg)out.verdict={c:'no',t:'BELOW THE MODELLED STALL',s:'EAS ' + fx(out.curEas,1)+' kt is below the modelled stall ' + fx(vsDeg,1) + ' kt.'};
+  else if(out.window!==null&&out.window<=0)out.verdict={c:'no',t:'NO COMPLIANT SPEED',s:'The buffered floor is at or above the buffered ceiling. The band is closed.'};
+  else if(out.margin!==null&&sb!==null&&out.margin<sb)out.verdict={c:'caution',t:'MARGIN SHORT OF THE USER BUFFER',s:'Margin ' + fx(out.margin,1) + ' kt, user buffer ' + fx(sb,1) + ' kt.'};
+  else if(out.margin!==null)out.verdict={c:'go',t:'WITHIN THE USER BUFFER',s:'Margin ' + fx(out.margin,1) + ' kt, policy window ' + fx(out.window,1) + ' kt.'};
+
+  var notes=[];
+  if(vmoMach!==null&&mmoEff!==null){
+    if(vmoMach<mmoEff-1e-9)notes.push('the VMO-derived Mach (' + fx(vmoMach,3) + ') is the binding upper limit, below MMO ' + fx(mmoEff,2));
+    else notes.push('MMO ' + fx(mmoEff,2) + ' is the binding upper limit; the VMO-derived Mach is ' + fx(vmoMach,3));
+  }
+  if(stepOn)notes.push('the stepped limit M' + fx(stepMach,2) + ' applies at this altitude (' + (stepMode==='at'?'at or above':'strictly above') + ' ' + fx(stepAlt,0) + ' ft)');
+  if(oat===null)notes.push('no static air temperature supplied: ISA is used for rho and for a');
+  if(conv==='B')notes.push('ICE HEURISTIC convention: stall EAS = reference x sqrt(W/Wref) x (1 + ice %). This is a linear approximation, not the aerodynamic CLmax form. For a +' + fx(ice,1) + '% ice scenario it is equivalent to a ' + fx(iceToClmax(ice)*100,2) + '% CLmax loss on top of a reference that already carries about 40% loss.');
+  if(conv==='C')notes.push('ICE MAPPED TO CLmax: the ' + fx(ice,1) + '% ice scenario is evaluated as a ' + fx(iceToClmax(ice)*100,2) + '% CLmax loss. This mapping is an assumption, not a measurement.');
+  if(conv==='A'&&clmax===0)notes.push('AERODYNAMIC convention selected with zero CLmax loss: the stall speed is the clean reference.');
+  var tierSel=($('f_tier')||{}).value;
+  if(tierSel==='MODELLED'||tierSel==='ILLUSTRATIVE'||tierSel==='UNKNOWN')notes.push('Selected stall reference tier is '+tierSel+'. Treat the result as non-certified.');
+  notes.push('Pressure is taken at the pressure altitude; density and speed of sound use the supplied static air temperature. EAS at a given Mach and pressure altitude is therefore independent of the temperature.');
+  notes.push('No absolute pass/fail wording is used anywhere in this tool.');
+  out.notes=notes;
+
+  out.working=[
+    'ATMOSPHERE',
+    '  h = ' + fx(A.h,1) + ' m   p = ' + fx(A.p,1) + ' Pa   T_static = ' + fx(A.T-273.15,2) + ' C   (ISA ' + fx(A.isaT-273.15,2) + ' C)',
+    '  rho = ' + fx(A.rho,6) + ' kg/m3   sigma = ' + fx(A.sigma,6) + '   a = ' + fx(A.aKt,2) + ' kt   a*sqrt(sigma) = ' + fx(A.aSigKt,2) + ' kt',
+    '',
+    'STALL',
+    '  configuration = ' + (CONFIGS[CFGSEL]?CONFIGS[CFGSEL].name:'-') + '   Vs_ref = ' + fx(vsRef,1) + ' kt (KEAS)   sqrt(W/Wref) = ' + fx(wRatio,5),
+    '  degradation factor (' + conv + ') = ' + fx(stallFactor(conv,ice,clmax),6),
+    '  modelled stall = ' + fx(vsDeg,2) + ' kt EAS',
+    '',
+    'CEILING',
+    '  VMO ' + fx(vmo,1) + ' KCAS -> qc ' + fx(casToQc(vmo),1) + ' Pa -> Mach at p = ' + fx(vmoMach,3),
+    '  MMO effective = ' + fx(mmoEff,3) + (stepOn?' (stepped limit applies)':' (general limit)'),
+    '  Upper Mach = ' + fx(upperMach,4),
+    '',
+    'BAND',
+    '  current EAS = M' + fx(mach,3) + ' x ' + fx(A.aSigKt,3) + ' = ' + fx(out.curEas,2) + ' kt',
+    '  stall margin = ' + fx(out.curEas,2) + ' - ' + fx(vsDeg,2) + ' = ' + fx(out.margin,2) + ' kt',
+    '  buffered floor = ' + fx(floorEas,2) + ' kt   buffered ceiling = ' + fx(ceilEas,2) + ' kt',
+    '  policy window = ' + fx(out.window,2) + ' kt',
+    '',
+    'DYNAMIC PRESSURE',
+    '  TAS = ' + fx(out.tasKt,2) + ' kt = ' + fx(out.tasMps,2) + ' m/s',
+    '  q = 0.5*rho*TAS^2 = ' + fx(out.q,1) + ' Pa = ' + fx(out.q/PSF,1) + ' psf'
+  ].join('\n');
+  return out;
+}
+
+/* ---------------- speed-band indicator ---------------- */
+function renderTrack(r){
+  var t=$('track'), sc=$('trackScale'), mc=$('trackMach');
+  var stall=r.stall, cur=(r.mode==='PISTON')?r.ias:r.curEas;
+  var floorEas=(r.mode==='PISTON')?r.stall+(r.sb||0):r.floorEas;
+  var ceilEas=(r.mode==='PISTON')?null:r.ceilEas;
+  var ceilRaw=(r.mode==='PISTON')?null:r.ceilRaw;
+  var vals=[stall,cur,floorEas,ceilEas,ceilRaw];
+  var mx=0;
+  for(var i=0;i<vals.length;i++){if(vals[i]!==null&&isFinite(vals[i])&&vals[i]>mx)mx=vals[i];}
+  var axisMax=mx*1.10;
+  if(!isFinite(axisMax)||axisMax<=0){t.innerHTML='';sc.innerHTML='';mc.innerHTML='';$('trackHint').textContent='No band to display.';return;}
+  function pct(v){if(v===null||!isFinite(v))return 0;return Math.max(0,Math.min(100,100*v/axisMax));}
+  var h='';
+  var closed=(ceilEas!==null&&floorEas!==null&&ceilEas<=floorEas);
+  h+='<div class="zone danger" style="left:0%;width:'+pct(stall).toFixed(2)+'%"></div>';
+  h+='<div class="zoneName zn-danger" style="left:6px">DANGER</div>';
+  if(ceilEas!==null&&ceilRaw!==null){
+    h+='<div class="zone caution" style="left:'+pct(stall).toFixed(2)+'%;width:'+Math.max(0,pct(floorEas)-pct(stall)).toFixed(2)+'%"></div>';
+    if(!closed){
+      h+='<div class="zone safe" style="left:'+pct(floorEas).toFixed(2)+'%;width:'+Math.max(0,pct(ceilEas)-pct(floorEas)).toFixed(2)+'%"></div>';
+      h+='<div class="zoneName zn-safe" style="left:'+(pct(floorEas)+1).toFixed(2)+'%">SAFE</div>';
+    }
+    h+='<div class="zone caution" style="left:'+pct(ceilEas).toFixed(2)+'%;width:'+Math.max(0,pct(ceilRaw)-pct(ceilEas)).toFixed(2)+'%"></div>';
+    h+='<div class="zone danger" style="left:'+pct(ceilRaw).toFixed(2)+'%;width:'+Math.max(0,100-pct(ceilRaw)).toFixed(2)+'%"></div>';
+    h+='<div class="rawOutline" style="left:'+pct(stall).toFixed(2)+'%;width:'+Math.max(0,pct(ceilRaw)-pct(stall)).toFixed(2)+'%"></div>';
+    h+='<div class="mk st" style="left:'+pct(stall).toFixed(2)+'%"></div>';
+    h+='<div class="mk bf" style="left:'+pct(floorEas).toFixed(2)+'%"></div>';
+    h+='<div class="mk bf" style="left:'+pct(ceilEas).toFixed(2)+'%"></div>';
+    h+='<div class="mk cl" style="left:'+pct(ceilRaw).toFixed(2)+'%"></div>';
+    h+='<div class="lab st" style="left:'+(pct(stall)+3).toFixed(2)+'%">STALL '+fx(stall,0)+'</div>';
+    h+='<div class="lab bf" style="left:'+(pct(floorEas)+3).toFixed(2)+'%">LOWER BUF</div>';
+    h+='<div class="lab bf" style="left:'+(pct(ceilEas)+3).toFixed(2)+'%">UPPER BUF</div>';
+    h+='<div class="lab cl" style="left:'+(pct(ceilRaw)+3).toFixed(2)+'%">CEIL '+fx(ceilRaw,0)+'</div>';
+  }else{
+    h+='<div class="zone caution" style="left:'+pct(stall).toFixed(2)+'%;width:'+Math.max(0,pct(floorEas)-pct(stall)).toFixed(2)+'%"></div>';
+    h+='<div class="zone safe" style="left:'+pct(floorEas).toFixed(2)+'%;width:'+Math.max(0,100-pct(floorEas)).toFixed(2)+'%"></div>';
+    h+='<div class="zoneName zn-safe" style="left:'+(pct(floorEas)+1).toFixed(2)+'%">SAFE</div>';
+    h+='<div class="mk st" style="left:'+pct(stall).toFixed(2)+'%"></div>';
+    h+='<div class="mk bf" style="left:'+pct(floorEas).toFixed(2)+'%"></div>';
+    h+='<div class="lab st" style="left:'+(pct(stall)+3).toFixed(2)+'%">STALL '+fx(stall,0)+'</div>';
+    h+='<div class="lab bf" style="left:'+(pct(floorEas)+3).toFixed(2)+'%">LOWER BUF</div>';
+  }
+  if(cur!==null&&isFinite(cur)){
+    h+='<div class="mk cu" style="left:'+pct(cur).toFixed(2)+'%"></div>';
+    h+='<div class="lab cu" style="left:'+pct(cur).toFixed(2)+'%">&#9651; NOW '+fx(cur,0)+'</div>';
+  }
+  t.innerHTML=h;
+  var sh='';
+  var step=axisMax>400?100:(axisMax>160?50:25);
+  for(var v=0;v<=axisMax+0.5;v+=step){
+    sh+='<span style="left:'+(100*v/axisMax).toFixed(2)+'%">'+Math.round(v)+'</span>';
+  }
+  sc.innerHTML=sh;
+  var mh='';
+  if(r.mode==='JET'&&r.A&&r.A.aSigKt>0){
+    var machMax=axisMax/r.A.aSigKt, mstep=machMax>0.9?0.2:(machMax>0.45?0.1:0.05);
+    for(var m2=0;m2<=machMax+1e-9;m2+=mstep){
+      var eas=r.A.aSigKt*m2;
+      if(eas>axisMax)break;
+      mh+='<span style="left:'+(100*eas/axisMax).toFixed(2)+'%">M'+m2.toFixed(2)+'</span>';
+    }
+  }
+  mc.innerHTML=mh;
+  $('trackHint').innerHTML='Upper scale in knots of equivalent airspeed, lower scale in Mach at the current altitude and temperature. The dashed amber rectangle is the <b>raw aerodynamic interval</b>; the green span is the <b>user buffer interval</b>; the pale dashed lines are the <b>modelled lower and upper boundaries</b>; &#9651; is the <b>current Mach-derived EAS</b> at '+(cur===null?'--':fx(cur,1)+' kt EAS')+'. '+(closed?'<b>The buffered band is CLOSED - the floor is at or above the ceiling.</b> ':'')+'Black = outside the aerodynamic band, brown = short of a buffer.';
+}
+
+/* ---------------- brief ---------------- */
+function buildBrief(r){
+  var c=CONFIGS[CFGSEL]||{};
+  var L=[];
+  L.push('COFFIN CORNER - CASE BRIEF');
+  L.push('Build v2.4 | educational study aid - NOT FOR FLIGHT OPERATIONS');
+  L.push('Data set: '+PRESETS[$('f_preset').value].label);
+  L.push('Convention: '+({A:'A - AERODYNAMIC (CLmax loss)',B:'B - ICE HEURISTIC (legacy linear)',C:'C - ICE MAPPED TO CLmax'})[r.conv]);
+  L.push('Configuration: '+(c.name||'-')+' | stall ref '+(c.keas!==undefined?fx(c.keas,1):'--')+' KEAS | tier '+(c.tier||'-'));
+  if(c.src)L.push('Source: '+c.src);
+  L.push('Pressure altitude '+fx(r.pa,0)+' ft | SAT '+(r.oat===null?'ISA (-54.3 C at this level)':fx(r.oat,1)+' C')+' | Mach '+fx(num('f_mach'),3)+' | weight '+fx(num('f_weight'),0)+' lb | ice '+fx(r.ice,1)+' % | CLmax '+fx(r.clmax,1)+' %');
+  L.push('VMO '+fx(num('f_vmo'),0)+' KCAS | MMO '+fx(num('f_mmo'),2)+(r.stepOn?(' | stepped M'+fx(num('f_stepmach'),2)+' applies'):'')+' | buffers +'+fx(r.sb,0)+' / -'+fx(r.ob,0)+' kt');
+  if(r.mode==='PISTON'){
+    L.push('Result: '+(r.verdict?r.verdict.t:'--')+' | margin '+(r.margin===null?'--':fx(r.margin,1)+' kt'));
+  }else{
+    L.push('Result: '+(r.verdict?r.verdict.t:'--')+' | stall margin '+(r.margin===null?'--':fx(r.margin,1)+' kt')+' | policy window '+(r.window===null?'--':fx(r.window,1)+' kt'));
+    L.push('EAS '+(r.curEas===null?'--':fx(r.curEas,1)+' kt')+' | q '+(r.q===null?'--':fx(r.q/PSF,1)+' psf'));
+  }
+  L.push('Evidence tier: '+(c.tier||'UNKNOWN')+' - illustrative, not certified performance. Verify against the AFM before use.');
+  return L.join('\n');
+}
+function copyBrief(){
+  var txt=buildBrief(calcEnvelope()),ok=false;
+  try{
+    var ta=document.createElement('textarea');
+    ta.value=txt;ta.setAttribute('readonly','readonly');ta.style.position='fixed';ta.style.left='-9999px';
+    document.body.appendChild(ta);ta.select();
+    ok=document.execCommand('copy');
+    document.body.removeChild(ta);
+  }catch(e){ok=false;}
+  if(!ok&&navigator.clipboard&&navigator.clipboard.writeText){
+    try{navigator.clipboard.writeText(txt);ok=true;}catch(e2){ok=false;}
+  }
+  $('copyMsg').textContent=ok?'Brief copied to the clipboard.':'Copy failed - select the text under Show the working and copy it manually.';
+}
+
+/* ---------------- rendering: envelope ---------------- */
+function renderEnv(){
+  var r=calcEnvelope();
+  $('modeChip').textContent=r.mode;
+  $('modeChip').className='chip '+(r.mode==='PISTON'?'bl':'ok');
+  $('modeHint').textContent=r.mode==='PISTON'
+    ? 'No Mach, no MMO, no ceiling and no band. The stall speed in IAS does not climb toward an overspeed limit for a normal-category piston, so there is no coffin corner.'
+    : 'Mach / MMO envelope with a user-buffered speed band. The ceiling is the more restrictive of MMO and the VMO-derived Mach.';
+  $('l_mach').textContent=(r.mode==='PISTON')?'Current IAS (kt)':'Current / target Mach';
+  var pr=PRESETS[$('f_preset').value];
+  $('presetHint').textContent=pr.note||'';
+  var cHint={
+    A:'AERODYNAMIC (primary). The stall speed is degraded only by the CLmax-loss input, through 1/sqrt(1-loss). Ice accretion % is a scenario descriptor and does not touch the stall here.',
+    B:'ICE HEURISTIC (legacy). The stall speed is scaled linearly by (1 + ice %). This reproduces the published v2.2 case figures. It is an approximation, not the aerodynamic form.',
+    C:'ICE MAPPED TO CLmax. The ice scenario is converted to a CLmax loss of 1-1/(1+ice %)^2 and then applied aerodynamically. The mapping is an assumption, not a measurement.'
+  };
+  $('convHint').textContent=cHint[r.conv]||'';
+
+  if(!r.ok){
+    $('kvs').innerHTML='';
+    $('verdict').className='v no';$('verdict').innerHTML='INPUTS INCOMPLETE<small>Correct the highlighted validation failure below.</small>';
+    ['tBand','tClmax','tIce','tAtm'].forEach(function(id){$(id).innerHTML='<tbody><tr><td>No result.</td></tr></tbody>';});
+    $('working').textContent='Calculations will appear here.';
+    $('warnings').innerHTML=r.warns.map(function(x){return '<div class="nb bad">'+esc(x[1])+'</div>';}).join('');
+    $('track').innerHTML='';$('trackScale').innerHTML='';$('trackMach').innerHTML='';$('trackHint').textContent='No band to display.';
+    return;
+  }
+
+  var A=r.A, kb=$('kvs'); kb.innerHTML='';
+  function k(l,v,s,cls){return '<div class="k '+(cls||'')+'"><div class="l">'+l+'</div><div class="v">'+v+'</div><div class="s">'+esc(s||'')+'</div></div>';}
+  if(r.mode==='PISTON'){
+    kb.innerHTML=k('Modelled stall (KEAS)',fx(r.stall,1),'degraded reference','info')
+      +k('Current IAS',fx(r.ias,1)+' kt','entered','info')
+      +k('Stall margin',fx(r.margin,1)+' kt','IAS - stall',r.margin>0?'good':'bad')
+      +k('User buffer',fx(num('f_sb'),1)+' kt','above modelled stall','info');
+  }else{
+    kb.innerHTML=k('Current EAS',fx(r.curEas,1)+' kt','M'+fx(num('f_mach'),3)+' at '+fx(r.pa,0)+' ft','info')
+      +k('Modelled stall',fx(r.stall,1)+' kt','EAS, degraded','info')
+      +k('Stall margin',fx(r.margin,1)+' kt','EAS - stall',r.margin>=num('f_sb')?'good':(r.margin>0?'warn':'bad'))
+      +k('Upper limit',fx(r.upperMach,3)+' M','min(MMO, VMO-derived)','info')
+      +k('Policy window',fx(r.window,1)+' kt','buffered',r.window>0?'good':'bad')
+      +k('Dynamic pressure',fx(r.q/PSF,1)+' psf','0.5*rho*TAS^2','info');
+  }
+  var vd=$('verdict');
+  if(r.verdict){vd.className='v '+r.verdict.c;vd.innerHTML=esc(r.verdict.t)+'<small>'+esc(r.verdict.s||'')+'</small>';}
+  else{vd.className='v';vd.textContent='READY - enter or confirm the study inputs.';}
+
+  var vsRef=num('f_vs'), wR=num('f_wref'), wgt=num('f_weight');
+  var wRatio=(wgt!==null&&wR&&wR>0)?Math.sqrt(wgt/wR):1;
+
+  renderTrack(r);
+
+  /* band table */
+  var tb=$('tBand');tb.innerHTML='';
+  if(r.mode==='JET'&&r.upperMach!==null){
+    var rows=[
+      ['Raw aerodynamic interval',fx(r.stall,1)+' - '+fx(r.ceilRaw,1)+' kt EAS','raw stall to raw ceiling'],
+      ['User buffer interval',fx(r.floorEas,1)+' - '+fx(r.ceilEas,1)+' kt EAS','+'+fx(num('f_sb'),1)+' kt above stall, -'+fx(num('f_ob'),1)+' kt below ceiling'],
+      ['Modelled lower / upper boundary','M'+fx(r.floorEas/A.aSigKt,4)+' - M'+fx(r.ceilEas/A.aSigKt,4),'expressed as Mach'],
+      ['Current Mach-derived EAS',fx(r.curEas,1)+' kt EAS','M'+fx(num('f_mach'),3)+' x a*sqrt(sigma)']
+    ];
+    tb.innerHTML='<thead><tr><th>Boundary / state</th><th>Value</th><th style="text-align:left">Basis</th></tr></thead><tbody>'
+      +rows.map(function(x){return '<tr><td>'+x[0]+'</td><td>'+x[1]+'</td><td style="text-align:left">'+x[2]+'</td></tr>';}).join('')
+      +'<tr class="hl"><td>Stall margin</td><td>'+fx(r.margin,1)+' kt</td><td style="text-align:left">EAS - modelled stall</td></tr>'
+      +'</tbody>';
+    $('bandHint').textContent='The raw interval is the aerodynamic envelope. The user buffer interval is what the study policy actually allows. In PISTON mode there is no interval: the stall speed does not climb toward an overspeed limit.';
+  }else{
+    tb.innerHTML='<tbody><tr><td>No speed band in this mode.</td></tr></tbody>';
+    $('bandHint').textContent='PISTON mode has no Mach, no MMO, no ceiling and no band.';
+  }
+
+  /* CLmax sensitivity - convention independent */
+  var tc=$('tClmax');tc.innerHTML='';
+  if(r.mode==='JET'){
+    var h='<thead><tr><th>CLmax loss</th><th>Stall multiplier</th><th>Modelled stall EAS</th><th>Current margin</th><th>User-buffer interval</th></tr></thead><tbody>';
+    for(var d=0;d<=80;d+=5){
+      var f=1/Math.sqrt(1-d/100), st=vsRef*wRatio*f;
+      var mg=r.curEas-st, win=(r.ceilEas!==null)?(r.ceilEas-(st+num('f_sb'))):null;
+      h+='<tr'+(Math.abs(d-r.clmax)<0.01?' class="hl"':'')+'><td>'+d+' %</td><td>'+fx(f,4)+'</td><td>'+fx(st,1)+'</td><td>'+fx(mg,1)+'</td><td>'+(win===null?'--':fx(win,1))+'</td></tr>';
+    }
+    tc.innerHTML=h+'</tbody>';
+  }else tc.innerHTML='<tbody><tr><td>CLmax sensitivity is a Mach-band concept and is not shown in PISTON mode.</td></tr></tbody>';
+
+  /* ice scenario table (convention B) */
+  var ti=$('tIce');ti.innerHTML='';
+  if(r.mode==='JET'){
+    var base=vsRef*wRatio;
+    var h2='<thead><tr><th>Ice accretion</th><th>Stall EAS (legacy linear)</th><th>Mstall</th><th>Margin to stall</th><th>Policy window</th><th>Status</th></tr></thead><tbody>';
+    var rowsIce=[];
+    for(var x=0;x<=60;x+=5){
+      var st=base*(1+x/100), mg=r.curEas-st, win=(r.ceilEas!==null)?(r.ceilEas-(st+num('f_sb'))):null;
+      rowsIce.push({x:x,st:st,mg:mg,win:win});
+    }
+    if(r.curEas!==null&&r.curEas>0){
+      var xz=(r.curEas/base-1)*100;
+      if(xz>=0&&xz<200){var stz=base*(1+xz/100);rowsIce.push({x:xz,st:stz,mg:0,win:(r.ceilEas!==null)?(r.ceilEas-(stz+num('f_sb'))):null,zero:true});}
+    }
+    rowsIce.sort(function(a,b){return a.x-b.x;});
+    rowsIce.forEach(function(o){
+      var cls=o.zero?' class="zero"':'';
+      h2+='<tr'+cls+'><td>'+fx(o.x,1)+' %</td><td>'+fx(o.st,2)+'</td><td>M'+fx(o.st/A.aSigKt,4)+'</td><td>'+fx(o.mg,2)+'</td><td>'+(o.win===null||!isFinite(o.win)?'--':fx(o.win,2))+'</td><td>'+(o.mg<=0?'MARGIN REACHED ZERO':(o.win!==null&&o.win<=0?'POLICY CLOSED':'--'))+'</td></tr>';
+    });
+    ti.innerHTML=h2+'</tbody>';
+  }else ti.innerHTML='<tbody><tr><td>The ice scenario table is a Mach-band concept and is not shown in PISTON mode.</td></tr></tbody>';
+
+  /* atmosphere table */
+  var ta=$('tAtm');ta.innerHTML='';
+  if(r.mode==='JET'){
+    var qUp=0.5*A.rho*Math.pow(r.upperMach*A.a,2);
+    ta.innerHTML='<thead><tr><th>Reference / state</th><th>Mach</th><th>TAS (kt)</th><th>EAS (kt)</th><th>q (psf)</th><th>Relative q</th></tr></thead><tbody>'
+      +'<tr><td>Current</td><td>'+fx(num('f_mach'),3)+'</td><td>'+fx(r.tasKt,1)+'</td><td>'+fx(r.curEas,1)+'</td><td>'+fx(r.q/PSF,1)+'</td><td>1.00</td></tr>'
+      +'<tr><td>Stall (modelled)</td><td>M'+fx(r.stall/A.aSigKt,4)+'</td><td>'+fx(r.stall/A.sigma,1)+'</td><td>'+fx(r.stall,1)+'</td><td>--</td><td>--</td></tr>'
+      +'<tr><td>Upper limit</td><td>'+fx(r.upperMach,4)+'</td><td>'+fx(r.upperMach*A.aKt,1)+'</td><td>'+fx(r.ceilRaw,1)+'</td><td>'+fx(qUp/PSF,1)+'</td><td>'+fx(r.q?qUp/r.q:null,2)+'</td></tr>'
+      +'</tbody>';
+  }else ta.innerHTML='<tbody><tr><td>No Mach or dynamic-pressure state in PISTON mode.</td></tr></tbody>';
+
+  $('working').textContent=r.working||'Calculations will appear here.';
+  var wn=$('warnings');wn.innerHTML='';
+  var all=(r.warns||[]).concat((r.notes||[]).map(function(x){return ['info',x];}));
+  if(!all.length)all=[['ok','No validation warnings for the current inputs.']];
+  all.forEach(function(x){wn.innerHTML+='<div class="nb '+(x[0]==='bad'?'bad':x[0]==='ok'?'ok':'info')+'">'+esc(x[1])+'</div>';});
+}
+
+/* ---------------- DIVE ---------------- */
+var PTS=[];
+function secOf(t){if(!t)return null;var p=t.split(':').map(parseFloat);if(p.length!==3||p.some(isNaN))return null;return p[0]*3600+p[1]*60+p[2];}
+function pushPts(list){PTS=list;renderPts();renderDive();}
+function renderPts(){
+  var t=$('tPts');var h='<thead><tr><th>Time (HH:MM:SS)</th><th>GPS alt (ft)</th><th>PA (ft)</th><th>GS (kt)</th><th>Track true</th><th>Reported VS (fpm)</th><th>Reported M</th></tr></thead><tbody>';
+  for(var i=0;i<PTS.length;i++){
+    h+='<tr><td><input data-pt="'+i+'" data-f="time" value="'+esc(PTS[i].time||'')+'" style="padding:4px;font-size:12px"></td>'
+      +'<td><input data-pt="'+i+'" data-f="gps" type="number" value="'+(PTS[i].gps===''?'':PTS[i].gps)+'" style="padding:4px;font-size:12px"></td>'
+      +'<td><input data-pt="'+i+'" data-f="pa" type="number" value="'+(PTS[i].pa===''?'':PTS[i].pa)+'" style="padding:4px;font-size:12px"></td>'
+      +'<td><input data-pt="'+i+'" data-f="gs" type="number" value="'+(PTS[i].gs===''?'':PTS[i].gs)+'" style="padding:4px;font-size:12px"></td>'
+      +'<td><input data-pt="'+i+'" data-f="trk" type="number" value="'+(PTS[i].trk===''?'':PTS[i].trk)+'" style="padding:4px;font-size:12px"></td>'
+      +'<td><input data-pt="'+i+'" data-f="vs" type="number" value="'+(PTS[i].vs===''?'':PTS[i].vs)+'" style="padding:4px;font-size:12px"></td>'
+      +'<td><input data-pt="'+i+'" data-f="mach" type="number" step="0.01" value="'+(PTS[i].mach===''?'':PTS[i].mach)+'" style="padding:4px;font-size:12px"></td></tr>';
+  }
+  t.innerHTML=h+'</tbody>';
+  t.querySelectorAll('input[data-pt]').forEach(function(inp){
+    inp.addEventListener('input',function(){
+      var i=parseInt(inp.getAttribute('data-pt'),10), f=inp.getAttribute('data-f');
+      PTS[i][f]=inp.value;renderDive();
+    });
+  });
+}
+function renderDive(){
+  var tg=$('tGround'),ta=$('tAir'),tc=$('tCmp'),pc=$('paCheck');
+  var wdir=num('d_wdir'),wspd=num('d_wspd'),wvert=num('d_wvert'),sat=num('d_sat'),thr=num('d_satthr');
+  tg.innerHTML='<thead><tr><th>Segment</th><th>&Delta;t (s)</th><th>&Delta;GPS alt (ft)</th><th>Avg ground VS (fpm)</th><th>Avg horiz GS (kt)</th><th>Ground-path angle</th><th>Data quality</th></tr></thead><tbody>';
+  ta.innerHTML='<thead><tr><th>Segment</th><th>Wind-corrected TAS (kt)</th><th>Air-relative vertical (fpm)</th><th>3D TAS (kt)</th><th>Mach</th><th>q (psf)</th><th>Air-path angle</th></tr></thead><tbody>';
+  tc.innerHTML='<thead><tr><th>Point</th><th>Reported M</th><th>Computed M</th><th>&Delta;M</th><th>Reported VS</th><th>Derived VS (GPS)</th><th>Derived VS (PA)</th></tr></thead><tbody>';
+  if(!PTS.length){tg.innerHTML+='<tr><td colspan="7">No points loaded.</td></tr></tbody>';ta.innerHTML+='<tr><td colspan="7">No air-relative estimate until adequate wind, track, pressure-altitude and temperature inputs are provided.</td></tr></tbody>';pc.innerHTML='<div class="nb info">No points loaded.</div>';return;}
+
+  var cmpRows='', groundRows=[], airRows=[];
+  for(var i=0;i<PTS.length;i++){
+    var p=PTS[i], prev=(i>0)?PTS[i-1]:null;
+    var s0=secOf(p.time), sPrev=prev?secOf(prev.time):null;
+    var dGps=null,dPa=null,vsG=null,vsP=null,dt=0;
+    if(prev&&s0!==null&&sPrev!==null){
+      dt=s0-sPrev;
+      if(dt>0){
+        if(prev.gps!==''&&p.gps!==''){dGps=p.gps-prev.gps;vsG=dGps/dt*60;}
+        if(prev.pa!==''&&p.pa!==''){dPa=p.pa-prev.pa;vsP=dPa/dt*60;}
+      }
+    }
+    var A=null,machC=null,qC=null;
+    if(p.pa!==''){A=atmos(parseFloat(p.pa),sat);}
+    var tasH=null;
+    if(p.gs!==''&&p.trk!==''&&wdir!==null&&wspd!==null){
+      tasH=parseFloat(p.gs)+wspd*Math.cos((wdir-parseFloat(p.trk))*Math.PI/180);
+    }else if(p.gs!==''&&wspd===0){tasH=parseFloat(p.gs);}
+    var vas=null;
+    if(vsG!==null&&wvert!==null)vas=vsG-wvert;
+    var t3=null;
+    if(tasH!==null&&vas!==null){t3=Math.sqrt(tasH*tasH+Math.pow(vas/60,2));}
+    if(t3!==null&&A){machC=t3/A.aKt;qC=0.5*A.rho*Math.pow(t3*KT2MS,2);}
+    var dq=(p.mach!==''&&machC!==null)?machC-parseFloat(p.mach):null;
+    cmpRows+='<tr><td>'+esc(p.time||('pt'+(i+1)))+'</td><td>'+(p.mach===''?'--':fx(parseFloat(p.mach),2))+'</td><td>'+(machC===null?'--':fx(machC,3))+'</td><td>'+(dq===null?'--':(dq>=0?'+':'')+fx(dq,3))+'</td><td>'+(p.vs===''?'--':fx(parseFloat(p.vs),0))+'</td><td>'+(vsG===null?'--':fx(vsG,0))+'</td><td>'+(vsP===null?'--':fx(vsP,0))+'</td></tr>';
+    if(prev&&dt>0){
+      var gpa=null,gsAvg=null;
+      if(dGps!==null)gpa=Math.atan2(dGps/dt*60,parseFloat(p.gs)||0)*180/Math.PI;
+      if(p.gs!==''&&prev.gs!==''){gsAvg=(parseFloat(p.gs)+parseFloat(prev.gs))/2;}
+      var qflags=[];
+      if(p.vs!==''&&thr!==null&&Math.abs(parseFloat(p.vs))>=thr)qflags.push('reported VS SATURATED');
+      if(vsP!==null&&vsG!==null){
+        var den=Math.max(Math.abs(vsP),Math.abs(vsG));
+        if(den>1&&Math.abs(vsP-vsG)/den>0.15)qflags.push('PA FIELD NOT TRACKING');
+      }
+      groundRows.push('<tr'+(qflags.length?' class="flag"':'')+'><td>'+esc((prev.time||'?')+' to '+(p.time||'?'))+'</td><td>'+fx(dt,0)+'</td><td>'+(dGps===null?'--':fx(dGps,0))+'</td><td>'+(vsG===null?'--':fx(vsG,0))+'</td><td>'+(gsAvg===null?'--':fx(gsAvg,0))+'</td><td>'+(gpa===null?'--':fx(gpa,2))+'</td><td>'+(qflags.length?qflags.join('; '):'ok')+'</td></tr>');
+      var ang=null;
+      if(tasH!==null&&vas!==null)ang=Math.atan2(vas/60,tasH)*180/Math.PI;
+      airRows.push('<tr><td>'+esc((prev.time||'?')+' to '+(p.time||'?'))+'</td><td>'+(tasH===null?'--':fx(tasH,1))+'</td><td>'+(vas===null?'--':fx(vas,0))+'</td><td>'+(t3===null?'--':fx(t3,1))+'</td><td>'+(machC===null?'--':fx(machC,3))+'</td><td>'+(qC===null?'--':fx(qC/PSF,1))+'</td><td>'+(ang===null?'--':fx(ang,2))+'</td></tr>');
+    }
+  }
+  tg.innerHTML+=groundRows.join('')+'</tbody>';
+  ta.innerHTML+=airRows.join('')+'</tbody>';
+  tc.innerHTML+=cmpRows+'</tbody>';
+  var lastP=PTS[PTS.length-1], firstP=PTS[0], html='';
+  if(firstP.pa!==''&&lastP.pa!==''&&firstP.gps!==''&&lastP.gps!==''){
+    var paOff=parseFloat(lastP.pa)-parseFloat(lastP.gps);
+    html+='<div class="nb info">PA - GPS offset at the last point: <b>'+fx(paOff,0)+' ft</b>. A frozen pressure-altitude field shows a growing offset as the GPS altitude falls.</div>';
+  }
+  html+='<div class="nb">The cross-check compares the vertical rate derived from the GPS altitude with the rate derived from the pressure-altitude field. If the two disagree by more than 15 percent, the PA field is stale or frozen. A saturated reported vertical rate is a floor, not a measurement.</div>';
+  pc.innerHTML=html;
+}
+
+/* ---------------- storm ---------------- */
+function renderStorm(){
+  var d=num('s_dist'),gs=num('s_gs'),bo=num('s_bo'),bs=num('s_bs');
+  var t=$('tStorm');
+  if(d===null||gs===null||gs<=0){t.innerHTML='<tbody><tr><td>Enter a distance and a groundspeed greater than zero.</td></tr></tbody>';return;}
+  var tH=d/gs*3600;
+  var tOrd=Math.max(0,d-(bo||0))/gs*3600;
+  var tSev=Math.max(0,d-(bs||0))/gs*3600;
+  t.innerHTML='<thead><tr><th>Quantity</th><th>Value</th><th style="text-align:left">Basis</th></tr></thead><tbody>'
+    +'<tr><td>Time to the reference point</td><td>'+fx(tH,0)+' s ('+fx(tH/60,2)+' min)</td><td style="text-align:left">distance / groundspeed</td></tr>'
+    +'<tr><td>Time to the ordinary-cell buffer boundary</td><td>'+fx(tOrd,0)+' s ('+fx(tOrd/60,2)+' min)</td><td style="text-align:left">(distance - ordinary buffer) / groundspeed</td></tr>'
+    +'<tr><td>Time to the severe-cell buffer boundary</td><td>'+fx(tSev,0)+' s ('+fx(tSev/60,2)+' min)</td><td style="text-align:left">(distance - severe buffer) / groundspeed</td></tr>'
+    +'<tr><td>Distance to reference point</td><td>'+fx(d,1)+' NM</td><td style="text-align:left">user input</td></tr>'
+    +'<tr><td>Ordinary-cell study buffer</td><td>'+fx(bo,1)+' NM</td><td style="text-align:left">user-defined, not a regulatory minimum</td></tr>'
+    +'<tr><td>Severe-cell study buffer</td><td>'+fx(bs,1)+' NM</td><td style="text-align:left">user-defined, not a regulatory minimum</td></tr>'
+    +'</tbody>';
+}
+
+/* ---------------- reference tables ---------------- */
+function renderRef(){
+  var ti=$('tIsa');
+  var h='<thead><tr><th>PA (ft)</th><th>T_ISA (C)</th><th>p (hPa)</th><th>sigma</th><th>a (kt)</th><th>a*sqrt(sigma) (kt)</th></tr></thead><tbody>';
+  [0,10000,20000,30000,35000,35250,37000,39000,41000,43000,45000,50000].forEach(function(ft){
+    var A=atmos(ft,null);
+    h+='<tr><td>'+ft+'</td><td>'+fx(A.isaT-273.15,1)+'</td><td>'+fx(A.p/100,2)+'</td><td>'+fx(A.sigma,6)+'</td><td>'+fx(A.aKt,1)+'</td><td>'+fx(A.aSigKt,1)+'</td></tr>';
+  });
+  ti.innerHTML=h+'</tbody>';
+  var tt=$('tTiers');
+  var tiers=[
+    ['CERTIFIED','Specific approved aircraft document or certified record; cite aircraft, revision and page.'],
+    ['TYPE-DATA','Manufacturer type-level information; verify against the specific aircraft AFM.'],
+    ['MEASURED','Instrument-recorded value; retain sensor, timestamp, units and limitations.'],
+    ['REPORTED','Human statement, radio call or transcript; preserve attribution.'],
+    ['EXPERIMENTAL','Experimental aircraft, test flight or simulator observation; not automatically transferable.'],
+    ['MODELLED','Calculated from stated inputs and assumptions; expose method and uncertainty.'],
+    ['ILLUSTRATIVE','Teaching-only value; never represent as certified performance.'],
+    ['UNKNOWN','Unresolved or unsupported by available evidence.']];
+  tt.innerHTML='<thead><tr><th>Tier</th><th style="text-align:left">Meaning / permitted use</th></tr></thead><tbody>'
+    +tiers.map(function(t){return '<tr><td>'+t[0]+'</td><td style="text-align:left">'+t[1]+'</td></tr>';}).join('')+'</tbody>';
+  $('corrLog').innerHTML=[
+    ['v2.1 - root correction','The m/s-to-knot conversion was wrong (it was neither conversion), which scaled the sound speed down by 15 percent and every Mach-derived number with it. Sound speed at FL350 is 576.4 kt (663.4 mph), not 500.5 kt; a*sqrt(sigma) at FL350 is 320.9 kt, not 278.9 kt. The earlier "0.87 kt policy window" claim was an artefact of that error: the true figures are a 34.8 kt policy window, a +38.9 kt stall margin at +10 percent ice, and a margin that does not reach zero until 31 percent ice accretion.'],
+    ['v2.1 - labelling','Replaced generic IAS labels on Mach-derived speeds with EAS; added explicit KCAS handling for VMO; separated CLmax degradation from ice coverage; replaced a single configuration increment with editable per-configuration stall data; corrected blank-input default handling and made required inputs fail visibly; reworked the policy-window closure to include both stall and overspeed buffers.'],
+    ['v2.1 - dive','Corrected the dive logic: groundspeed plus vertical speed is ground-relative, not TAS. Separated GPS altitude from pressure altitude. Removed sparse-data impact speed and G-force extrapolation. Changed generic recovery commands into non-operational regime classifications.'],
+    ['v2.2 - features','Added PISTON MODE (IAS stall margin, piston icing hazards) and the DIVE pressure-altitude cross-check, which exposes the frozen pressure-altitude field in the N722BD final report. Added the eight-tier evidence table, per-configuration stall data with evidence tier and source reference, user-defined storm buffers, and the wind-aware dive reconstruction.'],
+    ['v2.3 - correction of the CAS equation','The supplied v2.2 printed M_CAS = sqrt(5 [(qc/p0)^(2/7) - 1]). The correct relation is M_CAS = sqrt(5 [(1 + qc/p0)^(2/7) - 1]). As printed, the bracket is negative for every realistic calibrated airspeed (qc well below p0), so the expression returns NaN. v2.3 uses the corrected form everywhere and pins it with a round-trip self-test plus a check that the old form is not finite.'],
+    ['v2.3 - one degradation convention','The stall degradation was previously ambiguous: a base speed that already carried a CLmax loss, multiplied again by an ice percentage, against a separate CLmax-loss input. v2.3 offers three mutually exclusive conventions (AERODYNAMIC, ICE HEURISTIC, ICE MAPPED TO CLmax) and states the equivalence: 143.3 x 1/sqrt(1-0.40) = 185.00 exactly, and +10 percent ice on the 185 reference equals a 17.36 percent CLmax loss, which is 50.41 percent in total against the 143.3 clean reference.'],
+    ['v2.3 - strict airspeed labels','EAS, KEAS, KCAS and KIAS are used separately and consistently. The proxy treatment of a KIAS-derived figure as a KEAS input is disclosed where it applies, exactly as the external build disclosed it.'],
+    ['v2.3 - storm tool','The hard-coded "10 NM MINIMUM" verdict is removed. Buffers are user-defined study values, and the tool states three separate times: to the reference point, to the ordinary-cell buffer boundary and to the severe-cell buffer boundary.'],
+    ['v2.3 - recovery material','Classification only. No control inputs are offered anywhere in the tool.'],
+    ['v2.3 - atmosphere','The tropopause pressure is now taken continuously from the troposphere formula instead of a hard-coded constant, which removes a drift of up to about 0.4 kt in the high-altitude band table.'],
+    ['v2.3 - units corrected in this build','Dynamic pressure was computed from TAS expressed in knots rather than metres per second, which inflated q by a factor of 3.779. The same error was present in one self-test. Both are fixed, and the q identity check now runs in SI units.'],
+    ['v2.3 - EAS identity corrected (found by executing the suite)','The identity EAS = M*sqrt(gamma*p/rho0) holds in SI units per Mach. The check had compared a KNOTS value against that SI identity, so it could never pass. The check now pins both forms explicitly: the knots form with the pinned 1.943844492 factor, and the SI form. The reference equations state both, and the q reference label is corrected from 204 to 199 psf.'],
+    ['v2.4 - speed-band indicator restored','The v2.3 rebuild had dropped the coloured speed-band track from the v2.2 build. v2.4 restores it and extends it: an equivalent-airspeed axis with BLACK = danger (below the modelled stall or above the ceiling), BROWN = caution (inside the aerodynamic band but short of a user buffer) and GREEN = safe (the user buffer interval), with red stall and ceiling markers, dashed buffer markers, a dashed amber outline around the raw aerodynamic interval, and the triangle marker for the current Mach-derived EAS.'],
+    ['v2.4 - per-configuration stall data restored','The v2.3 rebuild had also dropped the editable per-configuration stall table from the v2.2 build. v2.4 restores it, with an evidence tier and a source reference on every configuration row, and the selected configuration drives the envelope.'],
+    ['v2.4 - CLmax table wording corrected','The sensitivity table is applied to the SELECTED stall reference, which may itself already carry a CLmax loss (the 185 chart-derived reference does). The old wording said "clean reference", which was misleading.'],
+    ['v2.4 - Copy brief','One click copies the current data set, convention, configuration with tier and source, conditions, limits, buffers, headline numbers and the evidence-tier caveat to the clipboard.'],
+    ['v2.4 revision r1 - window vocabulary and Mach scale','The indicator now uses the v2.2 window names: raw aerodynamic interval (dashed amber outline), user buffer interval (green), modelled lower and upper boundary (the buffer lines), and the triangle for the current Mach-derived EAS. A second scale in Mach was added under the knot scale, because the v2.2 window was Mach-based. Suite 65 to 67 checks.']
+  ].map(function(x){return '<div class="nb"><b>'+x[0]+'</b><br>'+x[1]+'</div>';}).join('');
+}
+
+/* ---------------- self-test ---------------- */
+var TESTS=[];
+function chk(name,fn){TESTS.push({name:name,fn:fn});}
+function near(a,b,tol){return isFinite(a)&&isFinite(b)&&Math.abs(a-b)<=tol;}
+function buildTests(){
+  TESTS=[];
+  chk('unit factor 1 m/s = 1.943844492 kt',function(){return KT===1.943844492;});
+  chk('unit factor 1 m/s = 2.236936292 mph',function(){return MPH===2.236936292;});
+  chk('unit factor 1 psf = 47.88025898 Pa',function(){return PSF===47.88025898;});
+  chk('sea-level speed of sound = 340.294 m/s',function(){return near(A0M,340.294,0.001);});
+  chk('ISA temperature at 0 m = 288.15 K',function(){return near(isaAt(0).T,288.15,1e-9);});
+  chk('ISA pressure at 0 m = 101325 Pa',function(){return near(isaAt(0).p,101325,0.01);});
+  chk('ISA temperature at 11,000 m = 216.65 K',function(){return near(isaAt(11000).T,216.65,1e-9);});
+  chk('ISA pressure is continuous at the tropopause',function(){return near(isaAt(11000).p,isaAt(11000.0001).p,0.01);});
+  chk('ISA is isothermal above 11,000 m',function(){return near(isaAt(15000).T,216.65,1e-9);});
+  chk('speed of sound at 11,000 m = 573.6 kt',function(){return near(atmos(36089,null).aKt,573.6,0.2);});
+  chk('speed of sound at FL350 = 576.5 kt',function(){return near(atmos(35000,null).aKt,576.5,0.3);});
+  chk('a*sqrt(sigma) at FL350 = 320.9 kt',function(){return near(atmos(35000,null).aSigKt,320.9,0.3);});
+  chk('EAS identity in knots: M*a*sqrt(sigma) = M*sqrt(gamma p / rho0) converted to knots',function(){
+    var A=atmos(35250,-47),m=0.76;
+    return near(m*A.aSigKt,m*Math.sqrt(GA*A.p/RHO0)*KT,1e-6);});
+  chk('EAS identity in SI: M*a*sqrt(sigma)/KT = M*sqrt(gamma p / rho0)',function(){
+    var A=atmos(35250,-47),m=0.76;
+    return near(m*A.aSigKt/KT,m*Math.sqrt(GA*A.p/RHO0),1e-6);});
+  chk('EAS at fixed Mach and PA is independent of OAT',function(){
+    return near(atmos(35250,-47).aSigKt,atmos(35250,-20).aSigKt,1e-6);});
+  chk('Mach from a measured TAS does depend on OAT',function(){
+    return !near(atmos(35000,-47).aKt,atmos(35000,-20).aKt,1e-6);});
+  chk('q = 0.5*rho*TAS^2 = 0.5*gamma*p*M^2 in SI units',function(){
+    var A=atmos(35250,-47),m=0.76,TAS=m*A.a;
+    return near(0.5*A.rho*TAS*TAS,0.5*GA*A.p*m*m,1e-6);});
+  chk('q at M0.76, 35,250 ft, -47 C is about 199 psf',function(){
+    var A=atmos(35250,-47),TAS=0.76*A.a;return near(0.5*A.rho*TAS*TAS/PSF,199,4);});
+  chk('CAS round trip qc -> CAS -> qc',function(){
+    var q=casToQc(250);return near(qcToCas(q),250,1e-6);});
+  chk('impact pressure for CAS 250 kt = 10,497 Pa',function(){return near(casToQc(250),10497,40);});
+  chk('M_CAS from qc = 10,497 Pa = 0.3779 (needs the +1)',function(){
+    var m=qcToMach(10497,P0);return isFinite(m)&&near(m,0.3779,0.002);});
+  chk('the published v2.2 CAS form would be NaN for the same qc',function(){
+    var bad=Math.sqrt(5*(Math.pow(10497/P0,2/7)-1));return isNaN(bad)||!isFinite(bad);});
+  chk('M_CAS is finite for every qc from 0 to 200 kPa',function(){
+    for(var q=0;q<=200000;q+=5000){if(!isFinite(qcToMach(q,P0)))return false;}return true;});
+  chk('VMO 340 KCAS converts to a finite Mach at FL350',function(){
+    return isFinite(machFromQc(casToQc(340),atmos(35000,null).p));});
+  chk('upper Mach is the minimum of MMO and the VMO-derived Mach',function(){
+    var A=atmos(35000,null),mm=Math.min(0.81,machFromQc(casToQc(340),A.p));return mm<=0.81;});
+  chk('CLmax factor at 40 percent loss = 1.290994',function(){return near(1/Math.sqrt(1-0.40),1.290994,1e-6);});
+  chk('CLmax factor at 17.35537 percent loss = 1.100000',function(){return near(1/Math.sqrt(1-ICE_EQ),1.10,1e-6);});
+  chk('143.3 x 1/sqrt(1-0.40) = 185.00',function(){return near(143.3/Math.sqrt(1-0.40),185.00,0.01);});
+  chk('linear +10 percent ice on 185 = 203.5',function(){return near(185*1.10,203.5,1e-9);});
+  chk('total CLmax loss for 185 x 1.10 against 143.3 = 50.41 percent',function(){
+    var f=185*1.10/143.3;return near(100*(1-1/(f*f)),50.41,0.05);});
+  chk('weight scaling is sqrt(W/Wref)',function(){return near(Math.sqrt(55000/27500),Math.SQRT2,1e-12);});
+  chk('case EAS at M0.76, 35,250 ft, -47 C = 242.3 to 242.7 kt',function(){
+    var v=atmos(35250,-47).aSigKt*0.76;return v>242.3&&v<242.7;});
+  chk('case stall margin with the legacy +10 percent ice = +38.8 to +39.1 kt',function(){
+    var v=atmos(35250,-47).aSigKt*0.76-203.5;return v>38.8&&v<39.1;});
+  chk('case policy window with the legacy +10 percent ice = 34.7 to 35.1 kt',function(){
+    var A=atmos(35250,-47),v=A.aSigKt*0.81-10-(203.5+10);return v>34.7&&v<35.1;});
+  chk('legacy ice margin reaches zero at about 31 percent',function(){
+    var A=atmos(35250,-47),z=(A.aSigKt*0.76/185-1)*100;return near(z,31.0,0.3);});
+  chk('legacy ice policy closes at about 28.8 percent',function(){
+    var A=atmos(35250,-47),z=(A.aSigKt*0.81-20)/185-1;return near(z*100,28.8,0.3);});
+  chk('the 185 reference closes the band at FL450',function(){
+    var A=atmos(45000,null);var raw=0.78*A.aSigKt-185;return raw<20;});
+  chk('the 143.3 reference leaves the band open at FL450',function(){
+    var A=atmos(45000,null);var raw=0.78*A.aSigKt-143.3;return raw>40;});
+  chk('stepped MMO applies AT the stepped altitude',function(){return stepApplies(37000,37000,'at');});
+  chk('stepped MMO does not apply STRICTLY BELOW the stepped altitude',function(){return !stepApplies(37000,37000,'above');});
+  chk('stepped MMO applies above the stepped altitude in either mode',function(){
+    return stepApplies(38000,37000,'at')&&stepApplies(38000,37000,'above');});
+  chk('storm time = distance / groundspeed (8 NM at 450 kt = 64 s)',function(){return near(8/450*3600,64,0.01);});
+  chk('storm time to a buffer boundary uses (distance - buffer), floored at zero',function(){
+    return near(Math.max(0,8-10)/450*3600,0,1e-9)&&near(Math.max(0,20-10)/450*3600,10/450*3600,1e-9);});
+  chk('wind correction: a wind FROM straight ahead increases TAS',function(){
+    var tas=300+40*Math.cos((0-0)*Math.PI/180);return near(tas,340,1e-9);});
+  chk('vertical wind is subtracted from ground vertical speed',function(){return near((-2000)-(-500),-1500,1e-9);});
+  chk('derived vertical rate from timestamps',function(){return near((1000-2000)/10*60,-6000,1e-9);});
+  chk('the PA staleness threshold is 15 percent',function(){
+    var vsP=-26368,vsG=-18260,den=Math.max(Math.abs(vsP),Math.abs(vsG));
+    return (Math.abs(vsP-vsG)/den)>0.15;});
+  chk('no absolute GO / NO-GO wording in the calculation path',function(){
+    var src=(''+calcEnvelope);return src.indexOf('GO ')<0&&src.indexOf('NO-GO')<0;});
+  chk('a missing pressure altitude produces a visible validation failure',function(){
+    var saved=$('f_pa').value;$('f_pa').value='';var r=calcEnvelope();$('f_pa').value=saved;
+    return r.warns&&r.warns.length>0&&r.warns[0][0]==='bad'&&r.ok===false;});
+  chk('CLmax loss at or above 100 percent is rejected',function(){
+    var saved=$('f_clmax').value;$('f_clmax').value='100';var r=calcEnvelope();$('f_clmax').value=saved;
+    return r.warns&&r.warns.length>0;});
+  chk('the evidence tier table has eight tiers',function(){return document.querySelectorAll('#tTiers tbody tr').length===8;});
+  chk('the ISA reference table is populated',function(){return document.querySelectorAll('#tIsa tbody tr').length>=10;});
+  chk('reported versus computed comparison is wired to the dive tab',function(){return !!$('tCmp');});
+  chk('q at M0.92 and 26,272 ft ISA = 440 psf',function(){
+    var A=atmos(26272,null);return near(0.5*GA*A.p*0.92*0.92/PSF,440,6);});
+  chk('the Mach and q pair at 12:48:58 implies TAS near 551 kt',function(){
+    var A=atmos(26272,null);var tas=Math.sqrt(2*0.5*GA*A.p*0.92*0.92/A.rho);return near(tas/KT2MS,551,6);});
+  /* ---- v2.4 additions ---- */
+  chk('the speed-band track element exists',function(){return !!$('track');});
+  chk('the track renders safe, caution and danger zones',function(){
+    var h=$('track').innerHTML||'';
+    return h.indexOf('zone safe')>=0&&h.indexOf('zone caution')>=0&&h.indexOf('zone danger')>=0;});
+  chk('the track renders in PISTON mode',function(){
+    var saved=$('f_mode').value;$('f_mode').value='PISTON';renderEnv();
+    var h=$('track').innerHTML||'';$('f_mode').value=saved;renderEnv();
+    return h.indexOf('zone')>=0;});
+  chk('track ordering: stall is below the buffered floor',function(){
+    var r=calcEnvelope();return r.floorEas>=r.stall;});
+  chk('track ordering: the buffered floor is below the buffered ceiling',function(){
+    var r=calcEnvelope();return r.ceilEas>=r.floorEas;});
+  chk('the configuration table holds at least one configuration',function(){return CONFIGS.length>=1;});
+  chk('the default configuration is the 143.3 discussion reference',function(){return CONFIGS[0].keas===143.3;});
+  chk('the selected configuration drives the envelope stall reference',function(){
+    return near(num('f_vs'),CONFIGS[CFGSEL].keas,1e-6);});
+  chk('the selected configuration tier is carried into the envelope',function(){
+    return $('f_tier').value===CONFIGS[CFGSEL].tier;});
+  chk('the case brief is built and carries the evidence tier',function(){
+    var b=buildBrief(calcEnvelope());
+    return b.length>150&&b.indexOf(CONFIGS[CFGSEL].tier)>=0;});
+  chk('the track marks the raw aerodynamic interval with a dashed outline',function(){
+    return ($('track').innerHTML||'').indexOf('rawOutline')>=0;});
+  chk('the track carries a Mach scale in JET mode',function(){
+    return ($('trackMach').innerHTML||'').indexOf('M0.')>=0;});
+}
+function runTests(){
+  buildTests();
+  var pass=0,t=$('tTests'),h='<thead><tr><th>#</th><th>Check</th><th>Result</th><th style="text-align:left">Detail</th></tr></thead><tbody>';
+  TESTS.forEach(function(tst,i){
+    var ok=false,det='';
+    try{ok=!!tst.fn();}catch(e){ok=false;det='EXCEPTION: '+e.message;}
+    if(ok)pass++;
+    h+='<tr class="'+(ok?'':'zero')+'"><td>'+(i+1)+'</td><td>'+esc(tst.name)+'</td><td>'+(ok?'PASS':'FAIL')+'</td><td style="text-align:left">'+esc(det||'')+'</td></tr>';
+  });
+  t.innerHTML=h+'</tbody>';
+  var st=$('stamp');
+  var total=TESTS.length;
+  st.textContent='BUILD v2.4 | SCRIPT OK | SELF-TEST '+(pass===total?'PASS':'FAIL')+' '+pass+'/'+total;
+  st.className=(pass===total?'':'bad');
+}
+
+/* ---------------- wiring ---------------- */
+function fillPresets(){
+  var s=$('f_preset');
+  Object.keys(PRESETS).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=PRESETS[k].label;s.appendChild(o);});
+  s.value='disc';
+}
+function applyPreset(){
+  var k=$('f_preset').value,p=PRESETS[k];
+  $('f_wref').value=p.wRef;$('f_vmo').value=p.vmo;$('f_mmo').value=p.mmo;
+  $('f_stepalt').value=p.stepAlt;$('f_stepmach').value=p.stepMach;
+  CONFIGS=[{name:p.cfgName,keas:p.vs,tier:p.tier,src:p.src}];
+  CFGSEL=0;
+  syncCfgToEnvelope();
+  renderCfgTable();
+  renderEnv();
+}
+function buildCaseBtns(){
+  var w=$('caseBtns');
+  w.innerHTML=CASES.map(function(c,i){return '<button class="btn" data-case="'+i+'">'+esc(c.n)+'</button>';}).join('')
+   +'<div class="hint" id="caseHint"></div>';
+  w.querySelectorAll('button[data-case]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var c=CASES[parseInt(b.getAttribute('data-case'),10)];
+      $('f_preset').value=c.pre;applyPreset();
+      $('f_conv').value=c.conv;$('f_pa').value=c.pa;
+      if(c.oat===null)$('f_oat').value='';else $('f_oat').value=c.oat;
+      $('f_ice').value=c.ice;$('f_clmax').value=c.clmax;$('f_mach').value=c.mach;$('f_weight').value=c.w;
+      $('caseHint').textContent=c.d;
+      renderEnv();
+    });
+  });
+}
+function switchTab(id){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('on',t.getAttribute('data-tab')===id);});
+  ['env','dive','case','ref'].forEach(function(k){$('p-'+k).classList.toggle('on',k===id);});
+  if(id==='dive')renderDive();
+  if(id==='ref')renderRef();
+}
+function init(){
+  fillPresets();buildCaseBtns();applyPreset();
+  document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){switchTab(t.getAttribute('data-tab'));});});
+  var ids=['f_mode','f_preset','f_pa','f_oat','f_ice','f_clmax','f_conv','f_mach','f_weight','f_vs','f_wref','f_vmo','f_mmo','f_stepalt','f_stepmach','f_stepmode','f_sb','f_ob','f_tier','f_src'];
+  ids.forEach(function(id){var e=$(id);e.addEventListener('input',function(){
+    if(id==='f_preset'){applyPreset();return;}
+    if(id==='f_vs'||id==='f_tier'||id==='f_src'){syncEnvelopeToCfg();}
+    renderEnv();
+  });});
+  $('f_cfgsel').addEventListener('change',function(){
+    CFGSEL=parseInt($('f_cfgsel').value,10)||0;
+    syncCfgToEnvelope();renderCfgTable();renderEnv();
+  });
+  $('bAddCfg').addEventListener('click',function(){
+    CONFIGS.push({name:'Flap setting '+(CONFIGS.length),keas:CONFIGS[CONFIGS.length-1].keas,tier:'ILLUSTRATIVE',src:''});
+    CFGSEL=CONFIGS.length-1;
+    syncCfgToEnvelope();renderCfgTable();renderEnv();
+  });
+  $('bCopy').addEventListener('click',copyBrief);
+  ['s_dist','s_gs','s_bo','s_bs'].forEach(function(id){$(id).addEventListener('input',renderStorm);});
+  ['d_wdir','d_wspd','d_wvert','d_sat','d_satthr'].forEach(function(id){$(id).addEventListener('input',renderDive);});
+  $('bAddPt').addEventListener('click',function(){if(PTS.length<6)PTS.push({time:'',gps:'',pa:'',gs:'',trk:'',vs:'',mach:''});renderPts();renderDive();});
+  $('bClearPts').addEventListener('click',function(){PTS=[];renderPts();renderDive();});
+  $('bLoadPts').addEventListener('click',function(){
+    PTS=[{time:'12:46:00',gps:'35000',pa:'35000',gs:'460',trk:'',vs:'0',mach:'0.76'},
+         {time:'12:48:07',gps:'36400',pa:'36250',gs:'430',trk:'',vs:'1200',mach:'0.76'},
+         {time:'12:48:58',gps:'26272',pa:'26272',gs:'484',trk:'',vs:'-26368',mach:'0.92'},
+         {time:'12:49:16',gps:'14806',pa:'14806',gs:'362',trk:'',vs:'-32640',mach:'0.82'},
+         {time:'12:49:26',gps:'6506',pa:'8750',gs:'251',trk:'',vs:'-49800',mach:'0.85'}];
+    renderPts();renderDive();});
+  $('bTests').addEventListener('click',runTests);
+  pushPts([]);
+  renderStorm();renderRef();
+  runTests();
+}
+document.addEventListener('DOMContentLoaded',init);
+</script>
+</body>
+</html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
